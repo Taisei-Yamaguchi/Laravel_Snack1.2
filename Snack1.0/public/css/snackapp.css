@@ -1,0 +1,125 @@
+
+body{
+    background-color: rgb(245, 254, 229);
+}
+
+a{
+    text-decoration: none;
+}
+
+.member_infomation{
+    color:black;
+    font-size: 10;
+}
+
+.headtitle{
+    background-color:rgb(250, 189, 236);
+    color:aliceblue;
+}
+.member_wrapper{
+    padding-top: 10px;
+}
+
+.member_image{
+    border-width: thick;
+    border-style:solid;
+    border-color:rgb(221, 222, 216);
+    ;
+    padding-top:0px;
+    align-content:center;
+    border-radius: 100%;
+}
+
+.deletion{
+    text-decoration: none;
+    color:red;
+    font-size: 10px;
+}
+
+.limit{
+    color:rgb(0, 0, 0);
+    background-color:aquamarine;
+
+}
+.limit:hover{
+    color:rgb(0, 0, 0);
+    background-color: rgb(238, 255, 5);
+    
+}
+
+
+
+.unlimit{
+    color:rgb(0, 0, 0);
+    background-color: rgb(238, 255, 5);
+}
+
+.unlimit:hover{
+    color:rgb(0, 0, 0);
+    background-color:aquamarine;
+}
+
+.before_nice{
+    color:yellow;
+    background-color: orange;
+}
+.after_nice{
+    color:yellow;
+    background-color: orange;
+}
+
+.before_nice:hover{
+    color:pink;
+}
+
+.after_nice:hover{
+    color:pink;
+}
+
+.likes_cnt{
+    color:pink;
+    margin-top:0px;
+    size-adjust: 10px;
+}
+
+.likes{
+    justify-content:right;
+    align-items:right;
+    background-color:rgb(233, 241, 112);
+    color:yellow;
+}
+
+.recomended_button{
+    color:azure;
+    background-color: aqua;
+    border-color:aqua;
+    border-radius: 10%;
+}
+
+.my_like_button{
+    color:yellow;
+    background-color: orange;
+    border-color:orange;
+    border-radius: 100%;
+}
+
+.member_image2{
+    border-radius:100%;
+}
+
+.coment2{
+    background-color: rgb(196, 245, 194);
+}
+
+.search{
+    background-color: chartreuse;
+    color:rgb(20, 23, 184);
+    border-radius: 10%;
+    border-color:chartreuse;
+}
+
+.edit{
+    text-decoration: none;
+    color:purple;
+    font-size: 10px;
+}
