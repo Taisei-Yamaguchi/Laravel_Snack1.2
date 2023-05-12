@@ -38,7 +38,7 @@
                 <p id="inputlength1"></p></td></tr> <!-- ここjavascript -->
             <tr><th>key Word:</th><td><textarea name="keyword" rows="6" cols="20"></textarea></td></tr>
             <tr><th>URL: </th><td><input type="text" name="url" value="{{$item->url}}"></td></tr>
-            <tr><th>Image:</th><td>The current image<img src="../../storage/app/public/snack_images/{{$item->image}}" width="70" height="85" alt="">
+            <tr><th>Image:</th><td>The current image<img src="../snack_images/{{$item->image}}" width="70" height="85" alt="">
                 <br><br><input type="file" name="image"></td></tr>
             <input type="hidden" name="id" value="{{$item->id}}">
             <input type="hidden" name="member_id" value="{{$member_id}}">

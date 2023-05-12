@@ -15,7 +15,7 @@
             <tr><th>Type:</th><td>{{$item->type}}</td></tr>
             <tr><th>Country:</th><td>{{$item->country}}</td></tr>
             <tr><th>Coment:</th><td>{{$item->coment}}</td></tr>
-            <tr><th>Image:</th><td><img src="../../storage/app/public/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
+            <tr><th>Image:</th><td><img src="../snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
             <input type="hidden" name="snack_id" value="{{$item->id}}">
             <input type="hidden" name="snack_image" value="{{$item->image}}">
             <tr><th></th><td><input type="submit" value="DELETE"></td></tr>

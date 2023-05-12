@@ -16,7 +16,7 @@
         <p>ID: {{$member['id']}} </p>
         <p>Name: {{$member['name']}} </p>
         <p>Mail: {{$member['mail']}} </p>
-        <img class="member_image" src="../../storage/app/public/member_images/{{$member['image']}}" width="70" height="85" alt="">
+        <img class="member_image" src="../member_images/{{$member['image']}}" width="70" height="85" alt="">
         @endif
 </div>
         @if(isset($suggest_items))
@@ -34,7 +34,7 @@
         </td></tr>
             <tr><th>Name:</th><td><a href="{{$item->url}}" style="text-decoration:none;">{{$item->name}}</a></td></tr>
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
-            <tr><th>Image</th><td><img src="../../storage/app/public/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
+            <tr><th>Image</th><td><img src="../snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
             </table>
             @endforeach
         @endif
@@ -91,7 +91,7 @@
         <hr>
 
         @if(isset($recomender_info))
-            <img class="member_image" src="../../storage/app/public/member_images/{{$recomender_info['image']}}" width="70" height="85" alt="">
+            <img class="member_image" src="../member_images/{{$recomender_info['image']}}" width="70" height="85" alt="">
             <p>{{$recomender_info['name']}} recommends those snacks!</p>
         @endif    
 
@@ -117,7 +117,7 @@
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
             <tr><th>Comment:</th><td>{{$item->coment}}</td></tr>
             <tr><th>Recommender:</th><td><a href='recomender_search?recomend=member_id,{{$item->member_id}}' style="text-decoration:none;">{{$item->member->name}}</a></td>
-            <tr><th>Image</th><td><img src="../../storage/app/public/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
+            <tr><th>Image</th><td><img src="../snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
             </table>
             <br>
             @endforeach
