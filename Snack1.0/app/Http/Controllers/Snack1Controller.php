@@ -48,10 +48,11 @@ class Snack1Controller extends Controller
             $request->session()->put('name',$member->name);
             $request->session()->put('image',$member->image);
             $request->session()->put('mail',$member->mail);
-    
+            
+            $suggest_items=array();
             $ses=$request->session()->all(); 
            
-            $suggest_items=array();
+            //$suggest_items=array();
         //2023.3.7 ここミドルウェアに移す？？
             return view('snack1.mypage',[
                 'member'=>$ses,

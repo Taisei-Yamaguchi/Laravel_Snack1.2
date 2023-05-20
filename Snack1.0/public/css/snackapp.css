@@ -123,3 +123,16 @@ a{
     color:purple;
     font-size: 10px;
 }
+
+.form_conf{
+    text-align: left;
+}
+
+.form_conf form{
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.suggest_items table{
+    display: inline-block;
+}

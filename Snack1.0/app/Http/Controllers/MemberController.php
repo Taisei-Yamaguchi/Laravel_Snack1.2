@@ -55,7 +55,9 @@ class MemberController extends Controller
             $file=$request->file('image');
             $extension=$file->getClientOriginalExtension();
 
-            if($extension =='jpg' || $extension=='png' || $extension=='gif' || $extension=='jfif'){
+            if($extension =='jpg' || $extension=='png' || $extension=='gif' || $extension=='jfif'
+                ||$extension=='JPG'||$extension=='TIFF'||$extension=='PNG'||$extension=='GIF'
+                ||$extension=='JPEG'||$extension=='tiff'){
                 $original=$file->getClientOriginalName();
                 $filename=date('Ymd_His').'_'.$original;
                 $form['image']=$filename;
@@ -143,7 +145,9 @@ class MemberController extends Controller
                 $file=$request->file('image');
                 $extension=$file->getClientOriginalExtension();
 
-                if($extension=='jpg' || $extension=='png' || $extension=='gif' ||$extension=='jfif'){
+                if($extension=='jpg' || $extension=='png' || $extension=='gif' ||$extension=='jfif'
+                ||$extension=='JPG'||$extension=='TIFF'||$extension=='PNG'||$extension=='GIF'
+                ||$extension=='JPEG'||$extension=='tiff'){
                     $original=$file->getClientOriginalName();
                     $filename=date('Ymd_His').'_'.$original;
                     $form['image']=$filename;

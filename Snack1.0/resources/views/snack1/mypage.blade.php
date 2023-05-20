@@ -13,13 +13,15 @@
         @endif
 <div class='member_infomation'>
         @if(isset($member))
-        <p>ID: {{$member['id']}} </p>
+        <img class="member_image" src="../member_images/{{$member['image']}}" width="70" height="85" alt="" align='left'>
         <p>Name: {{$member['name']}} </p>
         <p>Mail: {{$member['mail']}} </p>
-        <img class="member_image" src="../member_images/{{$member['image']}}" width="70" height="85" alt="">
         @endif
 </div>
-        @if(isset($suggest_items))
+<ul><a href="recomend_add">&raquo Recommend ←please recommend your favorite snacks!</a></ul>
+        
+    <div class="suggest_items">
+        @if(count($suggest_items)>0)
         <p>This application suggest these snacks!</p>
             @foreach($suggest_items as $item)
             <table>
@@ -29,18 +31,20 @@
             @else
             <a class="after_nice" href="like?snack_id={{$item->id}}">★</a>
             @endif
-        </th><td>
+            </th><td>
             count of likes {{$item->likes_cnt}}
-        </td></tr>
+            </td></tr>
             <tr><th>Name:</th><td><a href="{{$item->url}}" style="text-decoration:none;">{{$item->name}}</a></td></tr>
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
+            <tr><th>Recommender:</th><td><a href='recomender_search?recomend=member_id,{{$item->member_id}}' style="text-decoration:none;">{{$item->member->name}}</a></td>
             <tr><th>Image</th><td><img src="../snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
             </table>
             @endforeach
         @endif
+    </div>
         
 
-        <ul><a href="recomend_add">&raquo Recommend ←please recommend your favorite snacks!</a></ul>
+     
         
         <form action="search" method=post>
             {{csrf_field()}}
@@ -79,20 +83,24 @@
             <input type="text" name="keyword" placeholder="検索">
             <input type="submit" value="search" class="search">
         </form>
-        <form action="like_search" method="post">
-        {{csrf_field()}}
-            <input type="submit" value="★" class="my_like_button">
-        </form>
-        <form action="recomend_search" method="post" >
-        {{csrf_field()}}
-            <input type="hidden" name="recomend" value="member_id,{{$member['id']}}">
-            <input type="submit" value="R" class="recomended_button">
-        </form>
+        <div class="form_conf">
+            <form action="like_search" method="post">
+            {{csrf_field()}}
+                <input type="submit" value="★" class="my_like_button" align="left">
+            </form>
+            <form action="recomend_search" method="post" >
+            {{csrf_field()}}
+                <input type="hidden" name="recomend" value="member_id,{{$member['id']}}">
+                <input type="submit" value="R" class="recomended_button">
+            </form>
+        </div>
         <hr>
 
         @if(isset($recomender_info))
-            <img class="member_image" src="../member_images/{{$recomender_info['image']}}" width="70" height="85" alt="">
+            <img class="member_image" src="../member_images/{{$recomender_info['image']}}" width="70" height="85" alt="" align='left'>
             <p>{{$recomender_info['name']}} recommends those snacks!</p>
+            <br>
+            <br>
         @endif    
 
         @if(isset($items))

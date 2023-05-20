@@ -24,9 +24,9 @@ class SnackSuggest
     public function handle(Request $request, Closure $next)
     {   
         //リクエストされる前に処理
-        
-        $ses_id=$request->session()->get('id');
         $suggest_items=array();
+        $ses_id=$request->session()->get('id');
+        
         //2023.3.3 ユーザーのお気に入り登録情報から、ランダムで紹介する機能。
             //これ、いいねしたことない人が通るとエラー？
             //→解決策：まず、いいねしたことあるか判定する。
