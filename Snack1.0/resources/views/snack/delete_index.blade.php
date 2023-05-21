@@ -6,7 +6,7 @@
     
 <a href="home">to Mypage...</a>
 <p>Do you want to delete this snacks?</p>
-    <form action="delete" method="post" enctype="multipart/form-data"> <!-- ここ「/」の有無が大事 !-->
+    <form action="snack_delete" method="post" enctype="multipart/form-data"> <!-- ここ「/」の有無が大事 !-->
         <table>
             {{csrf_field()}}
             

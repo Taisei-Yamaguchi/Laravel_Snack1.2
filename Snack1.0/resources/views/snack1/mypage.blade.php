@@ -117,7 +117,7 @@
         </td></tr>
             <tr><th>Name:</th><td><a href="{{$item->url}}" style="text-decoration:none;">{{$item->name}}</a>
             @if($item->member_id==$member['id'])
-            <a href="delete?snack_id={{$item->id}}" class='deletion'>delete</a>
+            <a href="snack_delete?snack_id={{$item->id}}" class='deletion'>delete</a>
             <a href="snack_edit?snack_id={{$item->id}}" class='edit'>edit</a>
             @endif
             </td></tr>

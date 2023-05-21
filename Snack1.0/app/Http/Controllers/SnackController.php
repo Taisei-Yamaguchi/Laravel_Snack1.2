@@ -242,11 +242,7 @@ class SnackController extends Controller
         $item=Snack::where('id',$snack_id)->delete();
         Storage::disk('public')->delete('snack_images/'.$snack_image);
 
-        return view('snack1.mypage',
-        [
-            'member'=>$ses,
-            '$suggest_items'=>$suggest_items,
-        ]);
+        return redirect('mypage/home');
     }
 
 

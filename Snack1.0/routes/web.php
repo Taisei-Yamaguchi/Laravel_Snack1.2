@@ -47,7 +47,7 @@ Route::post('mypage/search',[SnackController::class,'search'])->middleware(Snack
 Route::get('mypage/like_search',[SnackController::class,'like_search'])->middleware(LoginMemberCheck::class)->middleware(SnackSuggest::class);
 Route::post('mypage/like_search',[SnackController::class,'like_search'])->middleware(SnackSuggest::class);
 
-Route::get('mypage/recomend_search',[SnackController::class,'search'])->middleware(LoginMemberCheck::class)->middleware(SnackSuggest::class);
+Route::get('mypage/recomend_search',[SnackController::class,'recomend_search'])->middleware(LoginMemberCheck::class)->middleware(SnackSuggest::class);
 Route::post('mypage/recomend_search',[SnackController::class,'recomend_search'])->middleware(SnackSuggest::class);
 
 Route::get('mypage/recomender_search',[SnackController::class,'recomend_search'])->middleware(LoginMemberCheck::class)->middleware(SnackSuggest::class);
@@ -56,8 +56,8 @@ Route::get('mypage/recomend_add',[SnackController::class,'add'])->middleware(Log
 Route::post('mypage/recomend_add',[SnackController::class,'create']);
 
 //2023.3.6 ここ改良の余地あり
-Route::get('mypage/delete',[SnackController::class,'delete_index'])->middleware(LoginMemberCheck::class)->middleware(SnackSuggest::class);
-Route::post('mypage/delete',[SnackController::class,'delete'])->middleware(SnackSuggest::class);
+Route::get('mypage/snack_delete',[SnackController::class,'delete_index'])->middleware(LoginMemberCheck::class)->middleware(SnackSuggest::class);
+Route::post('mypage/snack_delete',[SnackController::class,'delete'])->middleware(SnackSuggest::class);
 
 Route::get('mypage/snack_edit',[SnackController::class,'edit_index'])->middleware(LoginMemberCheck::class);
 Route::post('mypage/snack_edit',[SnackController::class,'edit']);
