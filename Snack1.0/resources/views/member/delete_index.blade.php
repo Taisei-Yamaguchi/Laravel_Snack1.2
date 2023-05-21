@@ -13,7 +13,7 @@
             <tr><th>ID:</th><td>{{$member['id']}}</td></tr>
             <tr><th>Name:</th><td>{{$member['name']}}</td></tr>
             <tr><th>Mail:</th><td>{{$member['mail']}}</td></tr>
-            <tr><th>Image:</th><td><img src="../member_images/{{$member['image']}}" width="70" height="85" alt=""></td></tr>
+            <tr><th>Image:</th><td><img src="../storage/member_images/{{$member['image']}}" width="70" height="85" alt=""></td></tr>
             <input type="hidden" name="member_id" value="{{$member['id']}}">
             <tr><th></th><td><input type="submit" value="DELETE"></td></tr>
       

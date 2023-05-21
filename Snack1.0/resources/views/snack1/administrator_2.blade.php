@@ -47,7 +47,7 @@
             </td>
             <tr><th>Name:</th><td>{{$member->name}}</td></tr>
             <tr><th>Email:</th><td>{{$member->mail}}</td></tr>
-            <tr><th>Image</th><td><img src="../member_images/{{$member->image}}" width="70" height="85" alt=""></td></tr>
+            <tr><th>Image</th><td><img src="../storage/member_images/{{$member->image}}" width="70" height="85" alt=""></td></tr>
             </table>
             <br>
             @endforeach

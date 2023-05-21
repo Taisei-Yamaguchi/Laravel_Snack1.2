@@ -75,7 +75,7 @@
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
             <tr><th>Coment:</th><td>{{$item->coment}}</td></tr>
             <tr><th>Recomender:</th><td><a href="recomender_search?recomender_id={{$item->member_id}}">{{$item->member->name}}</a></td>
-            <tr><th>Image</th><td><img src="../snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
+            <tr><th>Image</th><td><img src="../storage/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
             </table>
             <br>
             @endforeach

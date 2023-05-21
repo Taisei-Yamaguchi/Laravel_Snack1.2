@@ -12,7 +12,7 @@
             <tr><th>ID:</th><td>{{$member['id']}}</td></tr>
             <tr><th>Name:</th><td><input type="text" name="name" value="{{$member['name']}}"></td></tr>
             <tr><th>Mail:</th><td>{{$member['mail']}}</td></tr>
-            <tr><th>Image:</th><td>Current image<img src="../member_images/{{$member['image']}}" width="70" height="85" alt="">
+            <tr><th>Image:</th><td>Current image<img src="../storage/member_images/{{$member['image']}}" width="70" height="85" alt="">
                 <br><br><input type="file" name="image"></td></tr>
             <input type="hidden" name="id" value="{{$member['id']}}">
             <tr><th></th><td><input type="submit" value="EDIT"></td></tr>
