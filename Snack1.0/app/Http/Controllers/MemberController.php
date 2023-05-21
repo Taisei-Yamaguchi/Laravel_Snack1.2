@@ -108,7 +108,7 @@ class MemberController extends Controller
         //メンバーの写真も消す
         Storage::disk('public')->delete('member_images/'.$request->session()->get('image'));
 
-        return view('snack1.index');
+        return view('main.index');
     }
 
     

@@ -12,7 +12,7 @@ use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Snack1Controller extends Controller
+class MainController extends Controller
 {
 
 
@@ -29,7 +29,7 @@ class Snack1Controller extends Controller
         $request->session()->forget('country');
         $request->session()->forget('order');
         $request->session()->forget('form');
-        return view('snack1.index');
+        return view('main.index');
     }
 
 
@@ -54,12 +54,12 @@ class Snack1Controller extends Controller
            
             //$suggest_items=array();
         //2023.3.7 ここミドルウェアに移す？？
-            return view('snack1.mypage',[
+            return view('main.mypage',[
                 'member'=>$ses,
                 'suggest_items'=>$suggest_items,
             ]);
         }else{
-            return view('snack1.index',['mess'=>'ログイン失敗']);
+            return view('main.index',['mess'=>'ログイン失敗']);
         }
     }
 
@@ -78,7 +78,7 @@ class Snack1Controller extends Controller
         //↓ミドルウェアから取得
         $suggest_items=$request->suggest_items;
 
-        return view('snack1.mypage',[
+        return view('main.mypage',[
             'member'=>$ses,
             'suggest_items'=>$suggest_items,
         ]);
@@ -96,7 +96,7 @@ class Snack1Controller extends Controller
         $request->session()->forget('country');
         $request->session()->forget('order');
         $ses_id=$request->session()->get('id');
-        return view('snack1.administrator_index',[
+        return view('main.administrator_index',[
             'member_id'=>$ses_id,
         ]);
     }
@@ -116,13 +116,13 @@ class Snack1Controller extends Controller
         {
             $ses_id=$request->session()->get('id');
 
-            return view('snack1.administrator_1',[
+            return view('main.administrator_1',[
             'member_id'=>$ses_id,
             ]);
         }else{
             $error="情報が違います。";
 
-            return view('snack1.administrator_index',[
+            return view('main.administrator_index',[
                 'error'=>$error,
             ]);
         }
@@ -140,7 +140,7 @@ class Snack1Controller extends Controller
         $request->session()->forget('country');
         $request->session()->forget('order');
         $ses_id=$request->session()->get('id');
-        return view('snack1.administrator_1',[
+        return view('main.administrator_1',[
             'member_id'=>$ses_id,
         ]);
     }
@@ -165,7 +165,7 @@ class Snack1Controller extends Controller
         //AND OR検索　を考える???
         //2023.3.9 検索機能は共通関数に
         $items=SnackSearch::administrator_snack_search($keyword,$snack_type,$country,$order);
-        return view('snack1.administrator_1',[
+        return view('main.administrator_1',[
             'member_id'=>$ses_id,
             'items'=>$items,
         ]);
@@ -185,7 +185,7 @@ public function get_administrator_snack(Request $request)
     //AND OR検索　を考える???
     //2023.3.9 検索機能は共通関数に
     $items=SnackSearch::administrator_snack_search($keyword,$snack_type,$country,$order);
-    return view('snack1.administrator_1',[
+    return view('main.administrator_1',[
         'member_id'=>$ses_id,
         'items'=>$items,
     ]);
@@ -208,7 +208,7 @@ public function administrator_snack_recomender(Request $request)
 
     $recomender=explode(',',$recomend);
     $recomender_info=Member::where('id',$recomender[1])->first();
-    return view('snack1.administrator_1',[
+    return view('main.administrator_1',[
         'member_id'=>$ses_id,
         'items'=>$items,
         'recomender_info'=>$recomender_info,
@@ -259,7 +259,7 @@ public function administrator_snack_recomender(Request $request)
         $request->session()->forget('order');
         $ses_id=$request->session()->get('id');
 
-        return view('snack1.administrator_2',[
+        return view('main.administrator_2',[
             'member_id'=>$ses_id,
         ]);
     }
@@ -276,7 +276,7 @@ public function administrator_snack_recomender(Request $request)
         $request->session()->put('keyword',$keyword);
         $request->session()->put('order',$order);
         $members=MemberSearch::member_search($keyword,$order);
-        return view('snack1.administrator_2',[
+        return view('main.administrator_2',[
             'member_id'=>$ses_id,
             'members'=>$members,
         ]);
@@ -295,7 +295,7 @@ public function administrator_snack_recomender(Request $request)
         $request->session()->put('keyword',$keyword);
         $request->session()->put('order',$order);
         $members=MemberSearch::member_search($keyword,$order);
-        return view('snack1.administrator_2',[
+        return view('main.administrator_2',[
             'member_id'=>$ses_id,
             'members'=>$members,
         ]);

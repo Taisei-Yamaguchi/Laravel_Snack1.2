@@ -104,7 +104,7 @@ class SnackController extends Controller
         //2023.3.1 セッションmemberがそのsnackをすでにlike しているかチェック。
         $like_check=LikeFunction::like_check($ses['id'],$items);
 
-        return view('snack1.mypage',[
+        return view('main.mypage',[
             'member'=>$ses,
             'items'=>$items,
             'like_check'=>$like_check,
@@ -127,7 +127,7 @@ class SnackController extends Controller
         //2023.3.1 セッションmemberがそれぞれのsnackをすでにlike しているかチェック。
         $like_check=LikeFunction::like_check($ses['id'],$items);
 
-        return view('snack1.mypage',[
+        return view('main.mypage',[
             'member'=>$ses,
             'items'=>$items,
             'like_check'=>$like_check,
@@ -156,7 +156,7 @@ class SnackController extends Controller
         //2023.3.8　共通関数を使ってみる。
         $like_check=LikeFunction::like_check($ses['id'],$items);
     
-        return view('snack1.mypage',[
+        return view('main.mypage',[
         'member'=>$ses,
         'items'=>$items,
         'like_check'=>$like_check,
@@ -195,7 +195,7 @@ class SnackController extends Controller
         $recomender=explode(',',$recomend);
         $recomender_info=Member::where('id',$recomender[1])->first();
 
-         return view('snack1.mypage',[
+         return view('main.mypage',[
          'member'=>$ses,
          'items'=>$items,
          'like_check'=>$like_check,
