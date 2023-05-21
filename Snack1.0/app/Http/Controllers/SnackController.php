@@ -206,25 +206,18 @@ class SnackController extends Controller
 
 
 
-//to Snack Delete Screen
+//to Snack Delete Screen　そのユーザーじゃないとアクセスできないようにする。
     public function delete_index(Request $request)
     {
         $snack_id=$request->snack_id;
         $ses=$request->session()->all();
         $item=Snack::where('id',$snack_id)->first();
 
-        if($item['member_id']==$ses['id']){
-            return view('snack.delete_index',
-            [
-                'member_id'=>$ses['id'],
-                'item'=>$item,
-            ]);
-        }else{
-            return view('snack1.mypage',[
-                'member'=>$ses,
-            ]);
-        }
-        
+        return view('snack.delete_index',
+        [
+            'member_id'=>$ses['id'],
+            'item'=>$item,
+        ]);
     }
 
 
@@ -249,23 +242,19 @@ class SnackController extends Controller
 
 
 
-//to Snack Edit Screen
+//to Snack Edit Screen　そのユーザーじゃないとアクセスできないようにする。
     public function edit_index(Request $request)
     {
         $snack_id=$request->snack_id;
         $ses=$request->session()->all();
         $item=Snack::where('id',$snack_id)->first();
-        if($item['member_id']==$ses['id']){
-            return view('snack.edit_index',
-            [
-                'member_id'=>$ses['id'],
-                'item'=>$item,
-            ]);
-        }else{
-            return view('snack1.mypage',[
-                'member'=>$ses,
-            ]);
-        }
+        
+        return view('snack.edit_index',
+        [
+            'member_id'=>$ses['id'],
+            'item'=>$item,
+        ]);
+        
     }
 
 

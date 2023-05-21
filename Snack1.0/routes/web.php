@@ -9,6 +9,7 @@ use App\Http\Middleware\LoginMemberCheck;
 use App\Http\Middleware\AdministratorCheck;
 use App\Http\Middleware\SnackSuggest;
 use App\Http\Middleware\LikeProcess;
+use App\Http\Middleware\SnackEditCheck;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,10 +57,10 @@ Route::get('mypage/recomend_add',[SnackController::class,'add'])->middleware(Log
 Route::post('mypage/recomend_add',[SnackController::class,'create']);
 
 //2023.3.6 ここ改良の余地あり
-Route::get('mypage/snack_delete',[SnackController::class,'delete_index'])->middleware(LoginMemberCheck::class)->middleware(SnackSuggest::class);
+Route::get('mypage/snack_delete',[SnackController::class,'delete_index'])->middleware(LoginMemberCheck::class,SnackEditCheck::class);
 Route::post('mypage/snack_delete',[SnackController::class,'delete'])->middleware(SnackSuggest::class);
 
-Route::get('mypage/snack_edit',[SnackController::class,'edit_index'])->middleware(LoginMemberCheck::class);
+Route::get('mypage/snack_edit',[SnackController::class,'edit_index'])->middleware(LoginMemberCheck::class,SnackEditCheck::class);
 Route::post('mypage/snack_edit',[SnackController::class,'edit']);
 
 //2023.3.6 連続クリックを避ける方法を考える。
