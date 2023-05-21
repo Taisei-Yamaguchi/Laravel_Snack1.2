@@ -8,6 +8,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Middleware\LoginMemberCheck;
 use App\Http\Middleware\AdministratorCheck;
 use App\Http\Middleware\SnackSuggest;
+use App\Http\Middleware\LikeProcess;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,7 +63,7 @@ Route::get('mypage/snack_edit',[SnackController::class,'edit_index'])->middlewar
 Route::post('mypage/snack_edit',[SnackController::class,'edit']);
 
 //2023.3.6 連続クリックを避ける方法を考える。
-Route::get('mypage/like',[LikeController::class,'like_add_delete'])->middleware(LoginMemberCheck::class)->middleware(SnackSuggest::class);
+Route::get('mypage/like',[LikeController::class,'like_add_delete'])->middleware(LoginMemberCheck::class)->middleware(LikeProcess::class)->middleware(SnackSuggest::class);
 
 Route::get('administrator/index',[Snack1Controller::class,'administrator_index'])->middleware(AdministratorCheck::class);
 

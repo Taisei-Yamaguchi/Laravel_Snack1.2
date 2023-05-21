@@ -64,4 +64,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+    protected $middlewarePriority =[
+        \App\Http\Middleware\LoginMemberCheck::class,
+        \App\Http\Middleware\AdministratorCheck::class,
+        \App\Http\Middleware\LikeProcess::class,
+        \App\Http\Middleware\SnackSuggest::class,
+    ];
 }
