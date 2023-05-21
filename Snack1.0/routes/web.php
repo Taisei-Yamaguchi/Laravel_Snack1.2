@@ -75,6 +75,8 @@ Route::get('administrator/home2',[Snack1Controller::class,'administrator_2'])->m
 Route::get('administrator/snack',[Snack1Controller::class,'get_administrator_snack'])->middleware(AdministratorCheck::class);
 Route::post('administrator/snack',[Snack1Controller::class,'administrator_snack']);
 
+Route::get('administrator/snack_recomend',[Snack1Controller::class,'administrator_snack_recomender'])->middleware(AdministratorCheck::class);
+
 Route::get('administrator/member',[Snack1Controller::class,'get_administrator_member'])->middleware(AdministratorCheck::class);
 Route::post('administrator/member',[Snack1Controller::class,'administrator_member']);
 

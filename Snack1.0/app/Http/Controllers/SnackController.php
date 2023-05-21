@@ -149,7 +149,9 @@ class SnackController extends Controller
         //2023.3.2 やり方検討!!!
         //whereInが大切！！
         $my_likes=Like::where('member_id',$ses['id'])->pluck('snack_id');
-        $items=Snack::whereIn('id',$my_likes)->simplePaginate(5); //2023.5.5 ここsimplePaginate
+        $items=Snack::whereIn('id',$my_likes)
+        ->where('deletion',0)
+        ->simplePaginate(5); //2023.5.5 ここsimplePaginate
         //ここで、セッションmemberがそのsnackをすでにlike しているかチェック。
         //2023.3.8　共通関数を使ってみる。
         $like_check=LikeFunction::like_check($ses['id'],$items);
@@ -248,7 +250,7 @@ class SnackController extends Controller
         $snack_id=$request->snack_id;
         $ses=$request->session()->all();
         $item=Snack::where('id',$snack_id)->first();
-        
+
         return view('snack.edit_index',
         [
             'member_id'=>$ses['id'],

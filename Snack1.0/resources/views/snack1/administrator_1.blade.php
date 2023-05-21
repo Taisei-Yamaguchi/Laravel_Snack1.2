@@ -70,11 +70,12 @@
             @endif   
                 
             </td>
+            <tr><th>Count of likes:</th><td>★{{$item->likes_cnt}}</td>
             <tr><th>Name:</th><td><a href="{{$item->url}}">{{$item->name}}</a>
             </td></tr>
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
             <tr><th>Coment:</th><td>{{$item->coment}}</td></tr>
-            <tr><th>Recomender:</th><td><a href="recomender_search?recomender_id={{$item->member_id}}">{{$item->member->name}}</a></td>
+            <tr><th>Recomender:</th><td><a href="snack_recomend?recomend=member_id,{{$item->member_id}}">{{$item->member->name}}</a></td>
             <tr><th>Image</th><td><img src="../storage/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
             </table>
             <br>

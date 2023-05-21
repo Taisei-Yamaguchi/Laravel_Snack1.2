@@ -35,7 +35,9 @@ class SnackSearch extends Facade
     public static function recomend_search($recomend)
     {
         $recomend_array=explode(',',$recomend);
-        $items=Snack::where($recomend_array[0],$recomend_array[1])->simplePaginate(5);
+        $items=Snack::where($recomend_array[0],$recomend_array[1])
+        ->where('deletion',0)
+        ->simplePaginate(5);
         return $items;
     }
 
@@ -63,6 +65,11 @@ class SnackSearch extends Facade
         return $items;
     }
 
-
-
+//administrator_recomender snack_search
+    public static function administrator_recomend_search($recomend)
+    {
+        $recomend_array=explode(',',$recomend);
+        $items=Snack::where($recomend_array[0],$recomend_array[1])->simplePaginate(5);
+        return $items;
+    }
 }

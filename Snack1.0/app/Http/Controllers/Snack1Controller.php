@@ -193,6 +193,30 @@ public function get_administrator_snack(Request $request)
 
 
 
+//recomender_search snack for administartor
+public function administrator_snack_recomender(Request $request)
+{
+    $ses_id=$request->session()->get('id');
+
+    //recomendクエリの情報をセッションに入れて置き、ページングで移動しても、recomender_searchの情報を引き継ぐ。
+    if(isset($request->recomend)){
+        $request->session()->put('recomend',$request->recomend);
+    }
+    $recomend=$request->session()->get('recomend');
+
+    $items=SnackSearch::administrator_recomend_search($recomend);
+
+    $recomender=explode(',',$recomend);
+    $recomender_info=Member::where('id',$recomender[1])->first();
+    return view('snack1.administrator_1',[
+        'member_id'=>$ses_id,
+        'items'=>$items,
+        'recomender_info'=>$recomender_info,
+    ]);
+}
+
+
+
 
 //limit snacks
     public function snack_limit(Request $request)
@@ -204,9 +228,7 @@ public function get_administrator_snack(Request $request)
         ];
 
         $item=Snack::where('id',$id)->update($param);
-        return view('snack1.administrator_1',[
-            'member_id'=>$ses_id,
-        ]);
+        return back()->withInput();
     }
 
 
@@ -222,9 +244,7 @@ public function get_administrator_snack(Request $request)
         ];
 
         $item=Snack::where('id',$id)->update($param);
-        return view('snack1.administrator_1',[
-            'member_id'=>$ses_id,
-        ]);
+        return back()->withInput();
     }
 
 
@@ -294,9 +314,7 @@ public function get_administrator_snack(Request $request)
         ];
 
         $item=Member::where('id',$id)->update($param);
-        return view('snack1.administrator_2',[
-            'member_id'=>$ses_id,
-        ]);
+        return back()->withInput();
     }
 
 
@@ -312,8 +330,6 @@ public function get_administrator_snack(Request $request)
         ];
 
         $item=Member::where('id',$id)->update($param);
-        return view('snack1.administrator_2',[
-            'member_id'=>$ses_id,
-        ]);
+        return back()->withInput();
     }
 }
