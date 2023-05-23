@@ -37,7 +37,7 @@
             <tr><th>Coment:</th><td><textarea name="coment" rows="6" cols="20" onkeyup="ShowLength('inputlength',value);"></textarea>
                 <p id="inputlength1"></p></td></tr> <!-- ここjavascript -->
             <tr><th>key Word:</th><td><textarea name="keyword" rows="6" cols="20"></textarea></td></tr>
-            <tr><th>URL: </th><td><input type="text" name="url"></td></tr>
+            <tr><th>URL: </th><td><input type="text" name="url">please write links to homepage of maker or information of this snack</td></tr>
             <tr><th>Image:</th><td><input type="file" name="image"></td></tr>
             <input type="hidden" name="member_id" value="{{$member_id}}">
             <tr><th></th><td><input type="submit" value="RECOMMEND"></td></tr>

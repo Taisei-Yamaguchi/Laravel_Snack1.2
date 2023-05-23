@@ -18,17 +18,8 @@ class LikeController extends Controller
 
 //add or delete 'like'
     public function like_add_delete (Request $request){
-        //まずクエリを取得する
         //Middlewareを後処理にしないと、イイネ処理後にsuggestitemsを取得できないか？
         //like処理ミドルウェアで行った後にここに来る。
-        //$ses=$request->session()->all();
-        //$suggest_items=$request->suggest_items;
-        //redirectすればこれらも必要ない
-        /*return view('snack1.mypage',[
-            'member'=>$ses,
-            'suggest_items'=>$suggest_items,
-        ]);*/
-
         return back()->withInput();
     }
 }
