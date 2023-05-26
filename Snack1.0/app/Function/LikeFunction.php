@@ -9,12 +9,12 @@ class LikeFunction extends Facade
 
 //Check if the memer already 'like' the snacks or not.
 //各itemsについて、likeしてるかをlike_checkする
-    public static function like_check ($id,$items)
+    public static function like_check ($member_id,$items)
     {
         $like_check=array();
         foreach ($items as $item)
         {
-            $like_check[$item->id]=Like::where('member_id',$id)
+            $like_check[$item->id]=Like::where('member_id',$member_id)
             ->where('snack_id',$item->id)
             ->first();
         }
