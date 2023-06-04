@@ -1,6 +1,8 @@
 <html>
     <head>
         <title>@yield('title')</title>
+        <!-- vueを追加-->
+        <script src="https://unpkg.com/vue@2.5.17"></script>
         <style>
             body {font-size:16pt; color:#999; margin: 5px;}
             h1 {font-size:50pt; text-align:right; color:pink;
@@ -13,6 +15,7 @@
             border-bottom:solid 1px #ccc; color:#ccc;}
             th{background-color:#ffbf1f; color:fff; padding:5px 10px;}
             td{border:solid 1px #aaa; color:#999; padding:5px 10px;}
+            
         </style>
          <link rel="stylesheet" href="{{asset('/css/snackapp.css')}}">
          
@@ -21,9 +24,9 @@
         <h1>@yield('title')</h1>
         
         <hr size="1">
-        <div class="content">
-            @yield('content')
-        </div>
+            <div class="content">
+                @yield('content')
+            </div>
         <div class="footer">
             @yield('footer')
         </div>

@@ -112,7 +112,6 @@ a{
 }
 
 .search{
-    background-color: chartreuse;
     color:rgb(20, 23, 184);
     border-radius: 10%;
     border-color:chartreuse;
@@ -135,4 +134,12 @@ a{
 
 .suggest_items table{
     display: inline-block;
+}
+
+.upper-links{
+    font-size:15px;
+}
+
+.same-width-list select{
+    width: 200px;
 }
