@@ -1,8 +1,13 @@
 <html>
     <head>
+    <!--mypage/home でjqueryを利用する-->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <!--イイネ機能に向けたcsrf_tokenの設定--> 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title')</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- vueを追加-->
-        <script src="https://unpkg.com/vue@2.5.17"></script>
+        
         <style>
             body {font-size:16pt; color:#999; margin: 5px;}
             h1 {font-size:50pt; text-align:right; color:pink;
@@ -39,7 +44,7 @@
             }
         </style>
          <link rel="stylesheet" href="{{asset('/css/snackapp.css')}}">
-         
+                
     </head>
     <body>
         <h1>@yield('title')</h1>
@@ -68,5 +73,7 @@
         <div class="footer">
             @yield('footer')
         </div>
+    <!--ここでjsファイルを利用する-->
+    <script src="{{asset('/js/like.js')}}"></script>
     </body>
 </html>

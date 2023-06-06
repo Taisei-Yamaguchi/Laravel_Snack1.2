@@ -1,6 +1,7 @@
 @extends('layouts.snackapp_mypage')
 
 @section('title','MyPage')
+
 @section('subbar')
 <div class=upper-links>
 <a href="login">&raquoto Login screen...</a><br>
@@ -89,6 +90,8 @@
         <p>↓Recomend You↓</p>
             @foreach($suggest_items as $item)
             <table>
+
+<!--イイネ処理をjqueryとajaxによる非同期通信に変更する
             <tr><th> 
             @if(!isset($like_check[$item->id]))
             <a class="before_nice" href="like?snack_id={{$item->id}}">☆</a>
@@ -98,6 +101,23 @@
             </th><td>
             count of likes {{$item->likes_cnt}}
             </td></tr>
+-->
+            <tr><th>
+            @if(!$item->isLikedBy($member['id']))
+            <span class="likes">
+                <i class="fas snack-like like-toggle" data-snack_id="{{ $item->id }}">★</i>
+                <span class="like-counter">{{$item->likes_cnt}}</span>
+            </span><!-- /.likes -->
+            @else
+            <span class="likes">
+                <i class="fas snack-like star like-toggle liked" data-snack_id="{{ $item->id }}">★</i>
+                <span class="like-counter">{{$item->likes_cnt}}</span>
+            </span><!-- /.likes -->
+            @endif
+            </th><td></td></tr>
+
+
+
             <tr><th>Name:</th><td><a href="{{$item->url}}" style="text-decoration:none;">{{$item->name}}</a></td></tr>
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
             <tr><th>Recommender:</th><td><a href='recomender_search?recomend=member_id,{{$item->member_id}}' style="text-decoration:none;">{{$item->member->name}}</a></td>
@@ -121,7 +141,8 @@
             @foreach($items as $item)
             <table>
 
-            <!--ここを変えて、イイネ処理を非同期にする。イイネを押した後、jqueryを介す-->
+
+            <!--ここを変えて、イイネ処理を非同期にする。イイネを押した後、jqueryを介す
             <tr><th>
             @if(!isset($like_check[$item->id]))
             <a class="before_nice" href="like?snack_id={{$item->id}}" class="before_nice">☆</a>
@@ -131,6 +152,27 @@
         </th><td>
             count of likes {{$item->likes_cnt}}
         </td></tr>
+-->
+        
+
+
+        <!--イイネ処理はjquery とajaxを使った非同期処理にする。Vue への代替も考えてみる-->
+            <tr><th>
+            @if(!$item->isLikedBy($member['id']))
+            <span class="likes">
+                <i class="fas snack-like like-toggle" data-snack_id="{{ $item->id }}">★</i>
+                <span class="like-counter">{{$item->likes_cnt}}</span>
+            </span><!-- /.likes -->
+            @else
+            <span class="likes">
+                <i class="fas snack-like star like-toggle liked" data-snack_id="{{ $item->id }}">★</i>
+                <span class="like-counter">{{$item->likes_cnt}}</span>
+            </span><!-- /.likes -->
+            @endif
+            </th><td></td></tr>
+
+
+
 
 
             <tr><th>Name:</th><td><a href="{{$item->url}}" style="text-decoration:none;">{{$item->name}}</a>
@@ -150,6 +192,10 @@
 
             {{$items->links()}}
         @endif
+
+        
+       
+        
 @endsection
 
 @section('footer')

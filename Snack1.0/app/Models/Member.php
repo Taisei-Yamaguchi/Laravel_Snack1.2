@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Like;
 
 /**
  * Memberクラス
@@ -33,5 +34,9 @@ class Member extends Model
 
     public function getData(){
         return $this->id.':'.$this->name;
+    }
+
+    public function likes(){
+        return $this->hasMany('App\Models\Like');
     }
 }

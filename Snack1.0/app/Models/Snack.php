@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Member;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Like;
 
 class Snack extends Model
 {
@@ -34,6 +35,13 @@ class Snack extends Model
     public function getData(){
         return $this->id.':'.$this->name.'('
         .$this->member->name.')';
+    }
+
+    //指定したmember_idについて、すでにそのsnackにイイネを押しているかをここで判定する。
+    public function isLikedBy($member_id):bool{
+        return Like::where('member_id',$member_id)
+        ->where('snack_id',$this->id)
+        ->first() !==null;
     }
 
 

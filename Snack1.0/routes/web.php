@@ -24,6 +24,10 @@ use App\Http\Middleware\SnackEditCheck;
 Route::get('/', function () {
     return view('welcome');
 });
+//2023.6.4 vueのチェック
+Route::get('/practice1', function () {
+    return view('vue');
+});
 
 //2023.3.6 mypage にアクセスするものには、ミドルウェアでお菓子のsugestをするか？？
 Route::get('mypage/login',[MainController::class,'login_index']);
@@ -63,8 +67,12 @@ Route::post('mypage/snack_delete',[SnackController::class,'delete'])->middleware
 Route::get('mypage/snack_edit',[SnackController::class,'edit_index'])->middleware(LoginMemberCheck::class,SnackEditCheck::class);
 Route::post('mypage/snack_edit',[SnackController::class,'edit']);
 
-//2023.3.6 連続クリックを避ける方法を考える。
-Route::get('mypage/like',[LikeController::class,'like_add_delete'])->middleware(LoginMemberCheck::class)->middleware(LikeProcess::class)->middleware(SnackSuggest::class);
+//2023.3.6 イイネ機能デフォルト
+Route::get('mypage/like',[LikeController::class,'like_add_delete'])->middleware(LoginMemberCheck::class)->middleware(SnackSuggest::class)->middleware(LikeProcess::class);
+//2023.6.5 イイネ機能jqueryを使う
+Route::post('mypage/like', [LikeController::class,'likes'])->name('snacks.like');
+
+
 
 Route::get('administrator/index',[MainController::class,'administrator_index'])->middleware(AdministratorCheck::class);
 

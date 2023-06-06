@@ -61,11 +61,11 @@ a{
 
 .before_nice{
     color:yellow;
-    background-color: orange;
+    background-color: #ffbf1f;
 }
 .after_nice{
     color:yellow;
-    background-color: orange;
+    background-color: #ffbf1f;
 }
 
 .before_nice:hover{
@@ -82,12 +82,7 @@ a{
     size-adjust: 10px;
 }
 
-.likes{
-    justify-content:right;
-    align-items:right;
-    background-color:rgb(233, 241, 112);
-    color:yellow;
-}
+
 
 .recomended_button{
     color:azure;
@@ -142,4 +137,45 @@ a{
 
 .same-width-list select{
     width: 200px;
+}
+
+
+
+
+
+.likes{
+    justify-content:right;
+    align-items:right;
+    color:aliceblue;
+    
+}
+.snack-like{
+    cursor:pointer;
+}
+.like-counter{
+    background-color: #ffbf1f;
+}
+
+.before_like{
+    color:yellow;
+    background-color: #ffbf1f;
+    cursor:pointer;
+}
+
+.after_like{
+    color:yellow;
+    background-color :#ffbf1f;
+    cursor:pointer;
+}
+.before_like:hover{
+    color:pink;
+}
+
+.after_like:hover{
+    color:pink;
+}
+
+
+.liked{
+    color: yellow;
 }
