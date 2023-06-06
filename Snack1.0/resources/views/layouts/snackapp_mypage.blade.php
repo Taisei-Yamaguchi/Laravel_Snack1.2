@@ -5,8 +5,8 @@
     <!--イイネ機能に向けたcsrf_tokenの設定--> 
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title')</title>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <!-- vueを追加-->
+
+    
         
         <style>
             body {font-size:16pt; color:#999; margin: 5px;}
@@ -21,20 +21,21 @@
             th{background-color:#ffbf1f; color:fff; padding:5px 10px;}
             td{border:solid 1px #aaa; color:#999; padding:5px 10px;}
             article{
-                width:60%;
+                width:70%;
                 order:3;
-                border:solid 1px #999;
+                border:double 3px #999;
             }
             aside{
-                width:37%;
+                width:27%;
                 order:1;
-                border:solid 1px #999;
-                
+                border:double 3px #999;
+                height:50%;
             }
             .search{
                 order:2;
                 width:70%;
-                margin:10px;
+                margin:5px 5px 5px 3px;
+                height:60%;
                 
             }
             .main-wrapper{

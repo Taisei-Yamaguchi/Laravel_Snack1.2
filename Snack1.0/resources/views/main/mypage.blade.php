@@ -2,6 +2,7 @@
 
 @section('title','MyPage')
 
+
 @section('subbar')
 <div class=upper-links>
 <a href="login">&raquoto Login screen...</a><br>
@@ -21,7 +22,7 @@
         @endif
 </div>
 -->
-<a href="recomend_add">&raquo Recommend　snacks!</a>
+<a href="recomend_add">&raquo Recommend snacks!</a>
 </div><!--upper-links-->
         
 @endsection
@@ -70,17 +71,7 @@
             <input type="text" name="keyword" placeholder="検索">
             <input type="submit" value="search" class="search">
 </form>
-        <div class="form_conf">
-            <form action="like_search" method="post">
-            {{csrf_field()}}
-                <input type="submit" value="★" class="my_like_button" align="left">
-            </form>
-            <form action="recomend_search" method="post" >
-            {{csrf_field()}}
-                <input type="hidden" name="recomend" value="member_id,{{$member['id']}}">
-                <input type="submit" value="R" class="recomended_button">
-            </form>
-        </div>
+        
         <hr>
 @endsection
 
@@ -129,7 +120,18 @@
 @endsection
 
 @section('content')
-<h2>Show Result of Search Here</h2>
+<h2>Show Result of Search Here <div class="form_conf">
+            <form action="like_search" method="post">
+            {{csrf_field()}}
+                <input type="submit" value="★" class="my_like_button" align="left">
+            </form>
+            <form action="recomend_search" method="post" >
+            {{csrf_field()}}
+                <input type="hidden" name="recomend" value="member_id,{{$member['id']}}">
+                <input type="submit" value="R" class="recomended_button">
+            </form>
+        </div></h2>
+
         @if(isset($recomender_info))
             <img class="member_image" src="../storage/member_images/{{$recomender_info['image']}}" width="70" height="85" alt="" align='left'>
             <p>{{$recomender_info['name']}} recommends those snacks!</p>
@@ -139,6 +141,8 @@
 
         @if(isset($items))
             @foreach($items as $item)
+            
+
             <table>
 
 
@@ -191,6 +195,18 @@
             @endforeach
 
             {{$items->links()}}
+            <!--検索したitemsが空かどうかを判定。最初のitemの中身でチェック-->
+            @if(empty($items[0]))  
+    
+                <h3>not found...</h3>
+                <h3>Let's Recommend your favorite snacks from <a href="recomend_add">"Recommend snacks"</a>link!</h3>
+            @endif
+
+        @else
+            <h3>ここに検索結果が表示されます。</h3>
+            <h3>左の検索バーから探しているお菓子の種類、生産国などを選んで検索してみてね！</h3>
+            
+            
         @endif
 
         

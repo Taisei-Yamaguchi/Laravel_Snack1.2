@@ -143,16 +143,18 @@ a{
 
 
 
+
 .likes{
     justify-content:right;
     align-items:right;
-    color:aliceblue;
+    color:rgb(226, 228, 230);
     
 }
 .snack-like{
     cursor:pointer;
 }
 .like-counter{
+    color: yellow;
     background-color: #ffbf1f;
 }
 
