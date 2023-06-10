@@ -7,6 +7,8 @@ use App\Models\Snack;
 class LikeFunction extends Facade
 {
 
+
+//イイネ処理を非同期通信で行うので、この共通関数は使わない。
 //Check if the memer already 'like' the snacks or not.
 //各itemsについて、likeしてるかをlike_checkする
     public static function like_check ($member_id,$items)

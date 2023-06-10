@@ -28,8 +28,12 @@
 
         @if(isset($members))
             @foreach($members as $member)
-            <table>
+            <table class="result-search">
             <tr><th>ID: </th><td>{{$member->id}}
+
+
+
+            <!--制限ボタンも非同期にする-->
             @if($member->deletion==0&&$member->id!=1)
             <form action="member_limit" method="post">
                 {{csrf_field()}}
@@ -43,6 +47,8 @@
                 <input class="unlimit" type="submit" value="制限解除する">
             </form>
             @endif   
+
+            
                 
             </td>
             <tr><th>Name:</th><td>{{$member->name}}</td></tr>

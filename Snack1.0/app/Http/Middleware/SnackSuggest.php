@@ -39,7 +39,7 @@ class SnackSuggest
 
 
             //ここ、ランダムで決める。
-            $i=rand(1,4);
+            $i=rand(1,5);
             switch($i){
                 case 1: //いいねしたtypeの傾向からsugest
                     $my_likes_judge=Snack::whereIn('id',$my_likes)->pluck('type');
@@ -56,7 +56,7 @@ class SnackSuggest
                     ->orderBy('likes_cnt','desc')
                     ->limit(4) //2023.5.5 ここまだ少な目に
                     ->inRandomOrder()
-                    ->limit(2)
+                    ->limit(3)
                     ->get();
                     break;
 
@@ -74,7 +74,7 @@ class SnackSuggest
                     ->orderBy('likes_cnt','desc')
                     ->limit(4)
                     ->inRandomOrder()
-                    ->limit(2)
+                    ->limit(3)
                     ->get();
                     break;
 
@@ -92,17 +92,36 @@ class SnackSuggest
                     ->orderBy('likes_cnt','desc')
                     ->limit(4) //2023.5.5
                     ->inRandomOrder()
-                    ->limit(2)
+                    ->limit(3)
                     ->get();
                     break;
 
-                case 4: //いいねの傾向に関係なく、いいねしたもの以外を完全ランダムでsugest
+                    case 4: //いいねしたrecommenderの傾向からsugest
+                        $my_likes_judge=Snack::whereIn('id',$my_likes)->pluck('member_id');
+                        //$my_likes_judgeのmember配列の中で、最も出現回数の多い要素を取得する。
+                        //配列内の最頻値を取得する。
+                        //modeは配列の要素のうち、最頻値を配列として取得する。
+                        $keys=$my_likes_judge->mode();
+                        //$keysに当てはまるもの、かつまだlikeしてないもの、かつ自分がrecomendしたもの以外のものを取得。
+                        //inRandomOrder でランダムな順番で取り出す。
+                        $suggest_items=Snack::whereNotIn('id',$my_likes)
+                        //->whereNotIn('member_id',$ses_id)
+                        ->whereIn('member_id',$keys)
+                        ->where('deletion',0) //2023.5.5 ここ訂正
+                        ->orderBy('likes_cnt','desc')
+                        ->limit(4) //2023.5.5 ここまだ少な目に
+                        ->inRandomOrder()
+                        ->limit(3)
+                        ->get();
+                        break;
+
+                case 5: //いいねの傾向に関係なく、いいねしたもの以外を完全ランダムでsugest
                     //まだlikeしてないもの、かつ自分がrecomendしたもの以外のものを取得。
                     $suggest_items=Snack::whereNotIn('id',$my_likes)
                     //->whereNotIn('member',$ses_id)
                     ->where('deletion',0) //2023.5.5
                     ->inRandomOrder()
-                    ->limit(2)
+                    ->limit(3)
                     ->get();
                     break;
                 }   

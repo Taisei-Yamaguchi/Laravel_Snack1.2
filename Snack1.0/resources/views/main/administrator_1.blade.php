@@ -53,8 +53,11 @@
 
         @if(isset($items))
             @foreach($items as $item)
-            <table>
+            <table class="result-search">
             <tr><th>ID: </th><td>{{$item->id}}
+
+
+            <!--制限ボタンも非同期にする-->
             @if($item->deletion==0)
             <form action="snack_limit" method="post">
                 {{csrf_field()}}
@@ -68,10 +71,26 @@
                 <input class="unlimit" type="submit" value="表示にする">
             </form>
             @endif   
-                
+
+<!--制限ボタンの非同期処理を考える
+            @if($item->deletion==0)
+            <span class="limits">
+                <button class="limit limit-toggle unlimited" data-snack_id="{{$item->id}}" type="button">非表示にする</button>
+            </span>
+            @else
+            <span class="limits">
+                <button class="limit limit-toggle limited" data-snack_id="{{$item->id}}" type="button">表示にする</button>
+            </span>
+            @endif  
+
+-->
+            
+            
+
+
             </td>
             <tr><th>Count of likes:</th><td>★{{$item->likes_cnt}}</td>
-            <tr><th>Name:</th><td><a href="{{$item->url}}">{{$item->name}}</a>
+            <tr><th>Name:</th><td><a href="{{$item->url}}" target="_blank">{{$item->name}}</a>
             </td></tr>
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
             <tr><th>Coment:</th><td>{{$item->coment}}</td></tr>

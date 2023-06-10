@@ -1,5 +1,7 @@
 <?php
 
+//非同期通信にイイネ処理を任せたので、このミドルウェアは使わない。
+
 namespace App\Http\Middleware;
 
 use App\Function\LikeFunction;

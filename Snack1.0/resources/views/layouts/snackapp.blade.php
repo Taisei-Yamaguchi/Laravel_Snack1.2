@@ -1,8 +1,13 @@
 <html>
     <head>
-        <title>@yield('title')</title>
         <!-- vueを追加-->
         <script src="https://unpkg.com/vue@2.5.17"></script>
+        <!--jqueryを追加-->
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <!--csrf token-->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>@yield('title')</title>
         <style>
             body {font-size:16pt; color:#999; margin: 5px;}
             h1 {font-size:50pt; text-align:right; color:pink;
@@ -17,7 +22,7 @@
             td{border:solid 1px #aaa; color:#999; padding:5px 10px;}
             
         </style>
-         <link rel="stylesheet" href="{{asset('/css/snackapp.css')}}">
+         <link rel="stylesheet" href="{{asset('/css/snackapp.css')}}"><!--ここでcssを読み込む-->
          
     </head>
     <body>
@@ -30,5 +35,9 @@
         <div class="footer">
             @yield('footer')
         </div>
+
+        <script href="{{asset('/js/register_check.vue')}}"></script><!--ここにjsをまとめて読み込む-->
+        <script src="{{asset('/js/snack_limit.js')}}"></script>
+        <script src="{{asset('/js/member_limit.js')}}"></script>
     </body>
 </html>

@@ -9,7 +9,7 @@
         @if($member['id']==1)
         <a href="../administrator/index">&raquo管理者ログイン画面</a><br>
         @else
-        <a href="member_delete"　 class="deletion">&raquoAccount Deletion</a>&nbsp;
+        <a href="member_delete" class="deletion">&raquoAccount Deletion</a>&nbsp;
         <a href="member_edit" class="edit">&raquoAccount Edit</a>&nbsp;
         <a href="member_pass_change" class="edit">&raquopassword change</a>&nbsp;<br>
         @endif
@@ -24,12 +24,76 @@
 -->
 <a href="recomend_add">&raquo Recommend snacks!</a>
 </div><!--upper-links-->
+
+<div class="form_conf">
+
+
+            <form action="like_search" method="post">
+            {{csrf_field()}}
+                <input type="submit" value="★" class="my_like_button" align="left">
+            </form>
+            <form action="recomend_search" method="post" >
+            {{csrf_field()}}
+                <input type="hidden" name="recomend" value="member_id,{{$member['id']}}">
+                <input type="submit" value="R" class="recomended_button">
+            </form>
+        </div>
         
 @endsection
 
-@section('search')
+@section('suggests')
+
+            <div class="suggest_items">
+            @if(count($suggest_items)>0)
+            <br>
+            <p class="suggest-message">↓Recomend You↓</p>
+
+            @foreach($suggest_items as $item)
+            <table class="suggest-items-table" align="left">
+            <tr><th>
+            <!--suggest item のテーブル -->
+            @if(!$item->isLikedBy($member['id']))
+            <span class="likes">
+            <i class="fas snack-like like-toggle" data-snack_id="{{ $item->id }}">★</i>
+            <span class="like-counter">{{$item->likes_cnt}}</span>
+            </span><!-- /.likes -->
+            @else
+            <span class="likes">
+            <i class="fas snack-like star like-toggle liked" data-snack_id="{{ $item->id }}">★</i>
+            <span class="like-counter">{{$item->likes_cnt}}</span>
+            </span><!-- /.likes -->
+            @endif
+            <!--イイネ処理をjqueryとajaxによる非同期通信に変更する
+            <tr><th> 
+            @if(!isset($like_check[$item->id]))
+            <a class="before_nice" href="like?snack_id={{$item->id}}">☆</a>
+            @else
+            <a class="after_nice" href="like?snack_id={{$item->id}}">★</a>
+            @endif
+            </th><td>
+            count of likes {{$item->likes_cnt}}
+            </td></tr>
+-->
+            </th></tr>
+            <tr><td><a href="{{$item->url}}" target="_blank" style="text-decoration:none;">{{$item->name}}</a></td></tr>
+            <tr><td>{{$item->company}}</td></tr>
+            <tr><td><a href='recomender_search?recomend=member_id,{{$item->member_id}}' style="text-decoration:none;">{{$item->member->name}}</a></td>
+            <tr><td><img src="../storage/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
+            </table>
+            @endforeach
+
+        @endif
+</div>
+@endsection
+
+
+
 <hr>
-<form action="search" method=post >
+
+
+
+@section('content')
+<form action="search" method=post align="left">
             {{csrf_field()}}
             <div class="same-width-list">
                 <select name="snack_type" >
@@ -73,64 +137,8 @@
 </form>
         
         <hr>
-@endsection
 
-@section('suggests')
-<div class="suggest_items">
-        @if(count($suggest_items)>0)
-        <p>↓Recomend You↓</p>
-            @foreach($suggest_items as $item)
-            <table>
-
-<!--イイネ処理をjqueryとajaxによる非同期通信に変更する
-            <tr><th> 
-            @if(!isset($like_check[$item->id]))
-            <a class="before_nice" href="like?snack_id={{$item->id}}">☆</a>
-            @else
-            <a class="after_nice" href="like?snack_id={{$item->id}}">★</a>
-            @endif
-            </th><td>
-            count of likes {{$item->likes_cnt}}
-            </td></tr>
--->
-            <tr><th>
-            @if(!$item->isLikedBy($member['id']))
-            <span class="likes">
-                <i class="fas snack-like like-toggle" data-snack_id="{{ $item->id }}">★</i>
-                <span class="like-counter">{{$item->likes_cnt}}</span>
-            </span><!-- /.likes -->
-            @else
-            <span class="likes">
-                <i class="fas snack-like star like-toggle liked" data-snack_id="{{ $item->id }}">★</i>
-                <span class="like-counter">{{$item->likes_cnt}}</span>
-            </span><!-- /.likes -->
-            @endif
-            </th><td></td></tr>
-
-
-
-            <tr><th>Name:</th><td><a href="{{$item->url}}" style="text-decoration:none;">{{$item->name}}</a></td></tr>
-            <tr><th>Company:</th><td>{{$item->company}}</td></tr>
-            <tr><th>Recommender:</th><td><a href='recomender_search?recomend=member_id,{{$item->member_id}}' style="text-decoration:none;">{{$item->member->name}}</a></td>
-            <tr><th>Image</th><td><img src="../storage/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
-            </table>
-            @endforeach
-        @endif
-</div>
-@endsection
-
-@section('content')
-<h2>Show Result of Search Here <div class="form_conf">
-            <form action="like_search" method="post">
-            {{csrf_field()}}
-                <input type="submit" value="★" class="my_like_button" align="left">
-            </form>
-            <form action="recomend_search" method="post" >
-            {{csrf_field()}}
-                <input type="hidden" name="recomend" value="member_id,{{$member['id']}}">
-                <input type="submit" value="R" class="recomended_button">
-            </form>
-        </div></h2>
+<h2>Show Result of Search Here </h2>
 
         @if(isset($recomender_info))
             <img class="member_image" src="../storage/member_images/{{$recomender_info['image']}}" width="70" height="85" alt="" align='left'>
@@ -143,9 +151,7 @@
             @foreach($items as $item)
             
 
-            <table>
-
-
+            <table class="result-search">
             <!--ここを変えて、イイネ処理を非同期にする。イイネを押した後、jqueryを介す
             <tr><th>
             @if(!isset($like_check[$item->id]))
@@ -157,9 +163,6 @@
             count of likes {{$item->likes_cnt}}
         </td></tr>
 -->
-        
-
-
         <!--イイネ処理はjquery とajaxを使った非同期処理にする。Vue への代替も考えてみる-->
             <tr><th>
             @if(!$item->isLikedBy($member['id']))
@@ -174,12 +177,8 @@
             </span><!-- /.likes -->
             @endif
             </th><td></td></tr>
-
-
-
-
-
-            <tr><th>Name:</th><td><a href="{{$item->url}}" style="text-decoration:none;">{{$item->name}}</a>
+            
+            <tr><th>Name:</th><td><a href="{{$item->url}}" target="_blank" style="text-decoration:none;">{{$item->name}}</a>
             @if($item->member_id==$member['id'])
             <a href="snack_delete?snack_id={{$item->id}}" class='deletion'>delete</a>
             <a href="snack_edit?snack_id={{$item->id}}" class='edit'>edit</a>

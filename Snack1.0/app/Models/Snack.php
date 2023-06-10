@@ -1,5 +1,7 @@
 <?php
 
+//DBに関する処理をコントローラに直接記述ではなく、Modelsに書くようにする。
+
 namespace App\Models;
 
 use App\Models\Member;

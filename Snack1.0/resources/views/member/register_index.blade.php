@@ -11,8 +11,16 @@
             <tr><th></th><td>Please enter your registration information.</td></tr>
             <tr><th>Name:</th><td><input type="text" name="name" value="{{old('name')}}"></td></tr>
             <tr><th>mail:</th><td><input type="text" name="mail" value="{{old('mail')}}"></td></tr>
-            <tr><th>password:</th><td><input type="password" name="pass"><br>
-                <input type="password" name="pass2">*please enter the same password for confirmation.</td></tr>
+            <tr><th>password:</th><td>
+
+                <div id='password1'>
+                <input type="password" name="pass" v-model="input" maxlength="20" placeholder="5~20文字のパスワードを指定してください。">/20
+                </div>
+                <div id='password2'>
+                <input type="password" name="pass2" v-model="input" maxlength="20" placeholder="再度入力してください。">
+                </div>
+                </td></tr>
+
             <tr><th>Image:</th><td><input type="file" name="image"></td></tr>
             <tr><th></th><td><input type="submit" value="REGISTER"></td></tr>
         </table>

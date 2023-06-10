@@ -127,9 +127,31 @@ a{
     margin: 0 10px;
 }
 
-.suggest_items table{
-    display: inline-block;
+
+
+/* tableの設定 */
+table.suggest-items-table{
+    width:100px;
 }
+
+.result-search{
+    width:90%;
+}
+
+.result-search th{
+    width:20%;
+}
+
+table.suggest-items th{
+    width:200px;
+}
+
+
+
+p.suggest-message{
+    font-size:15px;
+}
+
 
 .upper-links{
     font-size:15px;
@@ -180,4 +202,9 @@ a{
 
 .liked{
     color: yellow;
+}
+
+.search{
+    height:20px;
+    width: 100px;
 }
