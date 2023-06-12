@@ -57,7 +57,7 @@
             <tr><th>ID: </th><td>{{$item->id}}
 
 
-            <!--制限ボタンも非同期にする。-->
+            <!--制限ボタンも同期処理。使わない-->
             <!-- @if($item->deletion==0)
             <form action="snack_limit" method="post">
                 {{csrf_field()}}

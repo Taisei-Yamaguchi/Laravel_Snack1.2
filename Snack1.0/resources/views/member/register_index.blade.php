@@ -14,7 +14,7 @@
             <tr><th>password:</th><td>
 
                 <div id='password1'>
-                <input type="password" name="pass" v-model="input" maxlength="20" placeholder="5~20文字のパスワードを指定してください。">/20
+                <input type="password" name="pass" v-model="input" maxlength="20" placeholder="5~20文字のパスワードを指定してください。">
                 </div>
                 <div id='password2'>
                 <input type="password" name="pass2" v-model="input" maxlength="20" placeholder="再度入力してください。">

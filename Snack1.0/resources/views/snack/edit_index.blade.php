@@ -35,8 +35,9 @@
             </select>
             </td></tr>
             <tr><th>Coment:</th><td><textarea name="coment" rows="6" cols="20" onkeyup="ShowLength('inputlength',value);">{{$item->coment}}</textarea>
-                <p id="inputlength1"></p></td></tr> <!-- ここjavascript -->
-            <tr><th>key Word:</th><td><textarea name="keyword" rows="6" cols="20"></textarea></td></tr>
+                <p id="inputlength1">50字以内で入力してください</p></td></tr> <!-- ここjavascript -->
+            <tr><th>key Word:</th><td><textarea name="keyword" rows="6" cols="20" placeholder="検索のためのキーワードを追加してください。"></textarea>
+                <p>50字以内で入力してください</p></td></tr>
             <tr><th>URL: </th><td><input type="text" name="url" value="{{$item->url}}"></td></tr>
             <tr><th>Image:</th><td>The current image<img src="../storage/snack_images/{{$item->image}}" width="70" height="85" alt="">
                 <br><br><input type="file" name="image"></td></tr>

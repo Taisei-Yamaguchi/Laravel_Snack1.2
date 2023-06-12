@@ -218,35 +218,6 @@ public function administrator_snack_recomender(Request $request)
 
 
 
-//limit snacks　同期処理　使わない
-    // public function snack_limit(Request $request)
-    // {
-    //     $ses_id=$request->session()->get('id');
-    //     $id=$request->snack_id;
-    //     $param=[
-    //         'deletion'=>1,
-    //     ];
-
-    //     $item=Snack::where('id',$id)->update($param);
-    //     return back()->withInput();
-    // }
-
-
-
-
-//unlimit snacks 同期処理　使わない
-    // public function snack_unlimit(Request $request)
-    // {
-    //     $ses_id=$request->session()->get('id');
-    //     $id=$request->snack_id;
-    //     $param=[
-    //         'deletion'=>0,
-    //     ];
-
-    //     $item=Snack::where('id',$id)->update($param);
-    //     return back()->withInput();
-    // }
-
 
 //2023.6.10 非同期によるsnack limit 処理。500エラーが起きる。
     public function snack_limit_process(Request $request)
@@ -331,6 +302,65 @@ public function administrator_snack_recomender(Request $request)
     }
 
 
+//2023.6.11 member limit 非同期処理
+    public function member_limit_process(Request $request)
+    {
+        $member_id = $request->member_id; //2.snack_idの取得
+        $already_limit = Member::where('id',$member_id)->where('deletion', 1)->first(); //3.
+
+        $newStatus;
+        if (!$already_limit) { //もしそのsnackがまだlimitされていなかったら
+            $param=[
+                'deletion'=>1,
+            ];
+            $item=Member::where('id',$member_id)->update($param);
+            $newStatus="制限解除する";
+        } else { //もしこのsnackが既にlimitされていたら
+            $param=[
+                'deletion'=>0,
+            ];
+            $item=Member::where('id',$member_id)->update($param);
+            $newStatus="制限する";
+        }
+        $param = [
+            'newStatus' => $newStatus,
+        ];
+        //5.そのsnackの最終的なlimitの値を返す？アクセスする度に、0か1に変わるだけだから必要なし
+        return response()->json($param); //6.jQueryに返す
+
+    }
+
+
+
+    //limit snacks　同期処理　使わない
+    // public function snack_limit(Request $request)
+    // {
+    //     $ses_id=$request->session()->get('id');
+    //     $id=$request->snack_id;
+    //     $param=[
+    //         'deletion'=>1,
+    //     ];
+
+    //     $item=Snack::where('id',$id)->update($param);
+    //     return back()->withInput();
+    // }
+
+
+
+
+//unlimit snacks 同期処理　使わない
+    // public function snack_unlimit(Request $request)
+    // {
+    //     $ses_id=$request->session()->get('id');
+    //     $id=$request->snack_id;
+    //     $param=[
+    //         'deletion'=>0,
+    //     ];
+
+    //     $item=Snack::where('id',$id)->update($param);
+    //     return back()->withInput();
+    // }
+
 
 
 //limit members　同期処理　使わない
@@ -363,32 +393,5 @@ public function administrator_snack_recomender(Request $request)
 //     }
 
 
-//2023.6.11 member limit 非同期処理
-    public function member_limit_process(Request $request)
-    {
-        $member_id = $request->member_id; //2.snack_idの取得
-        $already_limit = Member::where('id',$member_id)->where('deletion', 1)->first(); //3.
-
-        $newStatus;
-        if (!$already_limit) { //もしそのsnackがまだlimitされていなかったら
-            $param=[
-                'deletion'=>1,
-            ];
-            $item=Member::where('id',$member_id)->update($param);
-            $newStatus="制限解除する";
-        } else { //もしこのsnackが既にlimitされていたら
-            $param=[
-                'deletion'=>0,
-            ];
-            $item=Member::where('id',$member_id)->update($param);
-            $newStatus="制限する";
-        }
-        $param = [
-            'newStatus' => $newStatus,
-        ];
-        //5.そのsnackの最終的なlimitの値を返す？アクセスする度に、0か1に変わるだけだから必要なし
-        return response()->json($param); //6.jQueryに返す
-
-    }
 }
 

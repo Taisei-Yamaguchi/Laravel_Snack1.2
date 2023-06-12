@@ -33,7 +33,7 @@
 
 
 
-            <!--制限ボタンも非同期にする-->
+            <!--制限ボタン　同期処理　使わない-->
             <!-- @if($member->deletion==0&&$member->id!=1)
             <form action="member_limit" method="post">
                 {{csrf_field()}}

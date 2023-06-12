@@ -14,8 +14,8 @@ class Snack extends Model
     protected $guarded=array('id');
 
     public static $rules=array(
-        'name'=>'required|max:255',
-        'company'=>'required|max:255',
+        'name'=>'required|max:200',
+        'company'=>'required|max:200',
         'member_id'=>'required',
         'image'=>'',
         'url'=>'nullable|url',
