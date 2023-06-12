@@ -34,7 +34,7 @@
 
 
             <!--制限ボタンも非同期にする-->
-            @if($member->deletion==0&&$member->id!=1)
+            <!-- @if($member->deletion==0&&$member->id!=1)
             <form action="member_limit" method="post">
                 {{csrf_field()}}
                 <input type="hidden" name="id" value="{{$member->id}}">
@@ -46,9 +46,19 @@
                 <input type="hidden" name="id" value="{{$member->id}}">
                 <input class="unlimit" type="submit" value="制限解除する">
             </form>
-            @endif   
-
-            
+            @endif    -->
+        
+            <!-- 2023.6.11 メンバー制限を非同期処理 -->
+            @if($member->deletion==0&&$member->id!=1)
+            <span class="limits">
+                <button class="limit member-limit-toggle" data-member_id="{{$member->id}}" type="button">制限する</button>
+            </span>
+            @elseif($member->deletion==1&&$member->id!=1)
+            <span class="limits">
+                <button class="limit member-limit-toggle limited" data-member_id="{{$member->id}}" type="button">制限解除する</button>
+            </span>
+            @endif  
+        
                 
             </td>
             <tr><th>Name:</th><td>{{$member->name}}</td></tr>

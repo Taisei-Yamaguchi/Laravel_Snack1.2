@@ -57,8 +57,8 @@
             <tr><th>ID: </th><td>{{$item->id}}
 
 
-            <!--制限ボタンも非同期にする-->
-            @if($item->deletion==0)
+            <!--制限ボタンも非同期にする。-->
+            <!-- @if($item->deletion==0)
             <form action="snack_limit" method="post">
                 {{csrf_field()}}
                 <input type="hidden" name="snack_id" value="{{$item->id}}">
@@ -70,22 +70,21 @@
                 <input type="hidden" name="snack_id" value="{{$item->id}}">
                 <input class="unlimit" type="submit" value="表示にする">
             </form>
-            @endif   
+            @endif    -->
 
-<!--制限ボタンの非同期処理を考える
+<!--制限ボタンの非同期処理を考える。Controller にエラーがあると、500エラーとだけ表示されるので注意。
+500エラーが出たら、同期通信にしてlaravelエラーを参照するのも一つの手-->
+<!--2023.6.10 buttonタグの場合、データの渡し方、受け取り方を考える-->
             @if($item->deletion==0)
             <span class="limits">
-                <button class="limit limit-toggle unlimited" data-snack_id="{{$item->id}}" type="button">非表示にする</button>
+                <button class="limit snack-limit-toggle" data-snack_id="{{$item->id}}" type="button">非表示にする</button>
             </span>
             @else
             <span class="limits">
-                <button class="limit limit-toggle limited" data-snack_id="{{$item->id}}" type="button">表示にする</button>
+                <button class="limit snack-limit-toggle limited" data-snack_id="{{$item->id}}" type="button">表示にする</button>
             </span>
             @endif  
-
--->
-            
-            
+        
 
 
             </td>

@@ -36,7 +36,6 @@
             @yield('footer')
         </div>
 
-        <script href="{{asset('/js/register_check.vue')}}"></script><!--ここにjsをまとめて読み込む-->
         <script src="{{asset('/js/snack_limit.js')}}"></script>
         <script src="{{asset('/js/member_limit.js')}}"></script>
     </body>

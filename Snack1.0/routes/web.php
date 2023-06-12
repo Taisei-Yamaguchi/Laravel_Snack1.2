@@ -88,12 +88,20 @@ Route::get('administrator/snack_recomend',[MainController::class,'administrator_
 Route::get('administrator/member',[MainController::class,'get_administrator_member'])->middleware(AdministratorCheck::class);
 Route::post('administrator/member',[MainController::class,'administrator_member']);
 
-Route::post('administrator/snack_limit',[MainController::class,'snack_limit']);
-Route::post('administrator/snack_unlimit',[MainController::class,'snack_unlimit']);
+//同期処理による制限機能snack
+// Route::post('administrator/snack_limit',[MainController::class,'snack_limit']);
+// Route::post('administrator/snack_unlimit',[MainController::class,'snack_unlimit']);
 
+//2023.6.10 非同期処理による制限機能 snack
+Route::post('administrator/snack_limit',[MainController::class,'snack_limit_process']);
 
-Route::post('administrator/member_limit',[MainController::class,'member_limit']);
-Route::post('administrator/member_unlimit',[MainController::class,'member_unlimit']);
-Route::get('administrator/member_limit',[MainController::class,'get_administrator_member']);
-Route::get('administrator/member_unlimit',[MainController::class,'get_administrator_member']);
+//同期による制限機能member
+// Route::post('administrator/member_limit',[MainController::class,'member_limit']);
+// Route::post('administrator/member_unlimit',[MainController::class,'member_unlimit']);
+// Route::get('administrator/member_limit',[MainController::class,'get_administrator_member']);
+// Route::get('administrator/member_unlimit',[MainController::class,'get_administrator_member']);
+
+//2023.6.11 非同期による制限機能 member
+Route::post('administrator/member_limit',[MainController::class,'member_limit_process']);
+
 
