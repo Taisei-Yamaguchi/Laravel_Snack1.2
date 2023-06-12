@@ -5,7 +5,7 @@
 @section('content')
     <ul><a href="../member/add">New Registration</a></ul>
     @if (isset($mess))
-    {{$mess}}
+    {{$mess}}<!--一致するメンバーがいないときと、ただ制限されているときでメッセージを変える。-->
     @endif
     <form action="../mypage/home" method=post> <!-- ここ「/」の有無が大事 !-->
         <table>

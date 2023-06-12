@@ -44,22 +44,26 @@ class MainController extends Controller
         $member=LoginFunction::login($mail,$pass);
         //ここにifを入れて、一致するメンバーがいたらマイページへ。いなければエラーメッセージ。
         if(isset($member)){
-            $request->session()->put('id',$member->id);
-            $request->session()->put('name',$member->name);
-            $request->session()->put('image',$member->image);
-            $request->session()->put('mail',$member->mail);
+            if($member['deletion']==0){//ここで、初めて、メンバーが制限されているかを確認する。
+                $request->session()->put('id',$member->id);
+                $request->session()->put('name',$member->name);
+                $request->session()->put('image',$member->image);
+                $request->session()->put('mail',$member->mail);
+                
+                $suggest_items=array();
+                $ses=$request->session()->all(); 
             
-            $suggest_items=array();
-            $ses=$request->session()->all(); 
-           
-            //$suggest_items=array();
-        //2023.3.7 ここミドルウェアに移す？？
-            return view('main.mypage',[
-                'member'=>$ses,
-                'suggest_items'=>$suggest_items,
-            ]);
+                //$suggest_items=array();
+            //2023.3.7 ここミドルウェアに移す？？
+                return view('main.mypage',[
+                    'member'=>$ses,
+                    'suggest_items'=>$suggest_items,
+                ]);
+            }else{
+                return view('main.index',['mess'=>'このアカウントは管理人の権限により一時的に利用が制限されています。お手数ですが管理人にお問い合わせお願いします。']);
+            }
         }else{
-            return view('main.index',['mess'=>'ログイン失敗']);
+            return view('main.index',['mess'=>'ログイン失敗。mailかpasswordが間違っています。']);
         }
     }
 

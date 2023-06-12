@@ -13,7 +13,6 @@ class LoginFunction extends Facade
     {
         $member =Member::where('mail',$mail)
         ->where('pass',$pass)
-        ->where('deletion',0)
         ->first();
 
         return $member;
