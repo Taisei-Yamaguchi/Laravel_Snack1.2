@@ -102,12 +102,12 @@ class SnackController extends Controller
         //2023.3.9 検索機能は共通関数に
         $items=SnackSearch::snack_search($ses['keyword'],$ses['snack_type'],$ses['country'],$ses['order']);
         //2023.3.1 セッションmemberがそのsnackをすでにlike しているかチェック。
-        $like_check=LikeFunction::like_check($ses['id'],$items);
+        // $like_check=LikeFunction::like_check($ses['id'],$items);
 
         return view('main.mypage',[
             'member'=>$ses,
             'items'=>$items,
-            'like_check'=>$like_check,
+            // 'like_check'=>$like_check,
             'suggest_items'=>$suggest_items,
         ]);
         
@@ -136,6 +136,8 @@ class SnackController extends Controller
         
     }
 
+
+ 
 
 
 
@@ -189,7 +191,7 @@ class SnackController extends Controller
         $items=SnackSearch::recomend_search($recomend);
         //ここで、セッションmemberがそのsnackをすでにlike しているかチェック。
         //共通関数
-        $like_check=LikeFunction::like_check($ses['id'],$items);
+        // $like_check=LikeFunction::like_check($ses['id'],$items);
 
         //recomenderの情報
         $recomender=explode(',',$recomend);
@@ -198,13 +200,16 @@ class SnackController extends Controller
          return view('main.mypage',[
          'member'=>$ses,
          'items'=>$items,
-         'like_check'=>$like_check,
+        //  'like_check'=>$like_check,
          'suggest_items'=>$suggest_items,
          'recomender_info'=>$recomender_info,
          ]);
-    }
+}
 
 
+
+
+ 
 
 
 
@@ -311,5 +316,95 @@ class SnackController extends Controller
             );
             }
     }
+
+
+
+
+
+       //search snacks
+       public function guest_search(Request $request){
+        //2023.3.10 ペジネーションすると、これらのクエリが引き継がれない問題
+        //
+        $request->session()->put('keyword',$request->keyword);
+        $request->session()->put('snack_type',$request->snack_type);
+        $request->session()->put('country',$request->country);
+        $request->session()->put('order',$request->order);
+        $ses=$request->session()->all();
+
+        $suggest_items=$request->suggest_items;
+        //AND OR検索　を考える????
+        //2023.3.9 検索機能は共通関数に
+        $items=SnackSearch::snack_search($ses['keyword'],$ses['snack_type'],$ses['country'],$ses['order']);
+        //2023.3.1 セッションmemberがそのsnackをすでにlike しているかチェック。
+      
+        return view('main.guestpage',[
+            'member'=>$ses,
+            'items'=>$items,
+           
+            'suggest_items'=>$suggest_items,
+        ]);
+        
+    }
+
+
+
+//ここからは、guest用のsnackサーチ
+    //search snacks(for GET)
+        public function get_guest_search(Request $request)
+        {
+            $ses=$request->session()->all();
+            $suggest_items=$request->suggest_items;
+            //AND OR検索　を考える????
+            //2023.3.9 検索機能は共通関数に
+            $items=SnackSearch::snack_search($ses['keyword'],$ses['snack_type'],$ses['country'],$ses['order']);
+            //2023.3.1 セッションmemberがそれぞれのsnackをすでにlike しているかチェック。
+        
+
+            return view('main.guestpage',[
+                'member'=>$ses,
+                'items'=>$items,
+                'suggest_items'=>$suggest_items,
+            ]);
+            
+        }
+
+
+        //search by recommender
+    //2023.3.20 recomenderをguestでsearch
+    public function guest_recomend_search(Request $request)
+    {
+    
+        //suggest_itemsで広告
+        $suggest_items=$request->suggest_items;
+        //2023.3.3　特定の人がリコメンドしたもののみを取得
+
+        //2023.5.5 
+        if(isset($request->recomend)){
+            $request->session()->put('recomend',$request->recomend);
+        }
+        $recomend=$request->session()->get('recomend');
+
+
+    //2023.5.5 $recomend=$request->recomend;
+        
+        $items=SnackSearch::recomend_search($recomend);
+        //ここで、セッションmemberがそのsnackをすでにlike しているかチェック。
+        //共通関数
+        // $like_check=LikeFunction::like_check($ses['id'],$items);
+
+        //recomenderの情報
+        $recomender=explode(',',$recomend);
+        $recomender_info=Member::where('id',$recomender[1])->first();
+
+        return view('main.guestpage',[
+        'items'=>$items,
+        'suggest_items'=>$suggest_items,
+        'recomender_info'=>$recomender_info,
+        ]);
+    }
+
+
+
+
 
 }

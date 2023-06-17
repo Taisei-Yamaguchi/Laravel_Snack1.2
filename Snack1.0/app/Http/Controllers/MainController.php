@@ -91,7 +91,6 @@ class MainController extends Controller
 
 
 
-
 //to Administrator Login page. But session_id has to be '1'.
     public function administrator_index(Request $request)
     {
@@ -333,6 +332,22 @@ public function administrator_snack_recomender(Request $request)
         return response()->json($param); //6.jQueryに返す
 
     }
+
+
+
+    
+    //to Mypage(for GET). 
+//go home as a guest
+public function guest_index(Request $request)
+{
+    //↓ミドルウェアから取得
+    $suggest_items=$request->suggest_items;
+
+    return view('main.guestpage',[
+        'suggest_items'=>$suggest_items,
+    ]);
+}
+
 
 
 

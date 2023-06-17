@@ -105,3 +105,7 @@ Route::post('administrator/snack_limit',[MainController::class,'snack_limit_proc
 Route::post('administrator/member_limit',[MainController::class,'member_limit_process']);
 
 
+Route::get('guest/home',[MainController::class,'guest_index'])->middleware(SnackSuggest::class);
+Route::get('guest/search',[SnackController::class,'get_guest_search'])->middleware(SnackSuggest::class);
+Route::post('guest/search',[SnackController::class,'guest_search'])->middleware(SnackSuggest::class);
+Route::get('guest/recomender_search',[SnackController::class,'guest_recomend_search'])->middleware(SnackSuggest::class);

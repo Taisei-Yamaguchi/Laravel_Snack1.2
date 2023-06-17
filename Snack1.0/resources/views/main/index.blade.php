@@ -3,7 +3,7 @@
 @section('title','Login')
 
 @section('content')
-    <ul><a href="../member/add">New Registration</a></ul>
+    <a href="../member/add">&raquo New Registration</a>
     @if (isset($mess))
     {{$mess}}<!--一致するメンバーがいないときと、ただ制限されているときでメッセージを変える。-->
     @endif
@@ -16,6 +16,8 @@
             <tr><th></th><td><input type="submit" value="LOGIN"></td></tr>
         </table>
     </form>
+    <br>
+    <a href="../guest/home">&raquo only view as a guest.</a>
     
 @endsection
 

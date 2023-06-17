@@ -5,39 +5,12 @@
 
 @section('subbar')
 <div class=upper-links>
-<a href="login">&raquo Login screen...</a><br>
-        @if($member['id']==1)
-        <a href="../administrator/index">&raquo管理者ログイン画面</a><br>
-        @else
-        <a href="member_delete" class="deletion">&raquoAccount Deletion</a>&nbsp;
-        <a href="member_edit" class="edit">&raquoAccount Edit</a>&nbsp;
-        <a href="member_pass_change" class="edit">&raquopassword change</a>&nbsp;<br>
-        @endif
-<!--       メンバーインフォはいらない 
-<div class='member_infomation'>
-        @if(isset($member))
-        <img class="member_image" src="../storage/member_images/{{$member['image']}}" width="70" height="85" alt="" align='left'>
-        <p>Name: {{$member['name']}} </p>
-        <p>Mail: {{$member['mail']}} </p>
-        @endif
-</div>
--->
-<a href="recomend_add">&raquo Recommend snacks!</a>
+<a href="../mypage/login">&raquo Login screen...</a><br>
+<p>お菓子のイイネ、投稿にはサインアップが必要です。</p>
+
 </div><!--upper-links-->
 
-<div class="form_conf">
 
-
-            <form action="like_search" method="post">
-            {{csrf_field()}}
-                <input type="submit" value="★" class="my_like_button" align="left">
-            </form>
-            <form action="recomend_search" method="post" >
-            {{csrf_field()}}
-                <input type="hidden" name="recomend" value="member_id,{{$member['id']}}">
-                <input type="submit" value="R" class="recomended_button">
-            </form>
-        </div>
         
 @endsection
 
@@ -52,28 +25,9 @@
             <table class="suggest-items-table" align="left">
             <tr><th>
             <!--suggest item のテーブル -->
-            @if(!$item->isLikedBy($member['id']))
             <span class="likes">
-            <i class="fas snack-like like-toggle" data-snack_id="{{ $item->id }}">★</i>
+            <i class="fas snack-like" data-snack_id="{{ $item->id }}">★</i>
             <span class="like-counter">{{$item->likes_cnt}}</span>
-            </span><!-- /.likes -->
-            @else
-            <span class="likes">
-            <i class="fas snack-like star like-toggle liked" data-snack_id="{{ $item->id }}">★</i>
-            <span class="like-counter">{{$item->likes_cnt}}</span>
-            </span><!-- /.likes -->
-            @endif
-            <!--イイネ処理をjqueryとajaxによる非同期通信に変更する
-            <tr><th> 
-            @if(!isset($like_check[$item->id]))
-            <a class="before_nice" href="like?snack_id={{$item->id}}">☆</a>
-            @else
-            <a class="after_nice" href="like?snack_id={{$item->id}}">★</a>
-            @endif
-            </th><td>
-            count of likes {{$item->likes_cnt}}
-            </td></tr>
--->
             </th></tr>
             <tr><td><a href="{{$item->url}}" target="_blank" style="text-decoration:none;">{{$item->name}}</a></td></tr>
             <tr><td>{{$item->company}}</td></tr>
@@ -152,37 +106,17 @@
             
 
             <table class="result-search">
-            <!--ここを変えて、イイネ処理を非同期にする。イイネを押した後、jqueryを介す
             <tr><th>
-            @if(!isset($like_check[$item->id]))
-            <a class="before_nice" href="like?snack_id={{$item->id}}" class="before_nice">☆</a>
-            @else
-            <a class="after_nice" href="like?snack_id={{$item->id}}" class="after_nice">★</a>
-            @endif
-        </th><td>
-            count of likes {{$item->likes_cnt}}
-        </td></tr>
--->
-        <!--イイネ処理はjquery とajaxを使った非同期処理にする。Vue への代替も考えてみる-->
-            <tr><th>
-            @if(!$item->isLikedBy($member['id']))
             <span class="likes">
-                <i class="fas snack-like like-toggle" data-snack_id="{{ $item->id }}">★</i>
+                <!-- like-toggleを無効にして、イイネできないようにする。 -->
+                <i class="fas snack-like" data-snack_id="{{ $item->id }}">★</i>
                 <span class="like-counter">{{$item->likes_cnt}}</span>
             </span><!-- /.likes -->
-            @else
-            <span class="likes">
-                <i class="fas snack-like star like-toggle liked" data-snack_id="{{ $item->id }}">★</i>
-                <span class="like-counter">{{$item->likes_cnt}}</span>
-            </span><!-- /.likes -->
-            @endif
+           
             </th><td></td></tr>
             
             <tr><th>Name:</th><td><a href="{{$item->url}}" target="_blank" style="text-decoration:none;">{{$item->name}}</a>
-            @if($item->member_id==$member['id'])
-            <a href="snack_delete?snack_id={{$item->id}}" class='deletion'>delete</a>
-            <a href="snack_edit?snack_id={{$item->id}}" class='edit'>edit</a>
-            @endif
+            
             </td></tr>
             
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
