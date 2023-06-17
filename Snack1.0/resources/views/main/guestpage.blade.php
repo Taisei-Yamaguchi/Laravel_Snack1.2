@@ -1,6 +1,6 @@
 @extends('layouts.snackapp_mypage')
 
-@section('title','MyPage')
+@section('title','Guest')
 
 
 @section('subbar')
