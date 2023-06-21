@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 /**session_idが存在するかどうかチェック。session_idがなく、
 マイページにアクセスするとログイン画面に戻される。
+guest pageではこのミドルウェアを使わない。
 Check if there is session_id or not. If there is not session_id,
 when accessed Mypage,you wil be back to Login Screen.
 

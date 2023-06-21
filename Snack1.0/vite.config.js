@@ -15,3 +15,14 @@ export default defineConfig({
         host: true,//new
     }, //new
 });
+
+
+module.exports = {
+    build: {
+      rollupOptions: {
+        input: {
+          main: './path/to/main.js', // メインのエントリーポイントへのパスを指定
+        },
+      },
+    },
+};

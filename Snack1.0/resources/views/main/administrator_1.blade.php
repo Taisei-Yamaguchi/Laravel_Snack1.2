@@ -50,6 +50,12 @@
         </form>
         
         <hr>
+        @if(isset($recomender_info))
+            <img class="member_image" src="../storage/member_images/{{$recomender_info['image']}}" width="70" height="85" alt="" align='left'>
+            <p>{{$recomender_info['name']}} recommends those snacks!</p>
+            <br>
+            <br>
+        @endif   
 
         @if(isset($items))
             @foreach($items as $item)
@@ -93,7 +99,7 @@
             </td></tr>
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
             <tr><th>Coment:</th><td>{{$item->coment}}</td></tr>
-            <tr><th>Recomender:</th><td><a href="snack_recomend?recomend=member_id,{{$item->member_id}}">{{$item->member->name}}</a></td>
+            <tr><th>Recomender:</th><td><a href="snack_recomend?recomend={{$item->member_id}}">{{$item->member->name}}</a></td>
             <tr><th>Image</th><td><img src="../storage/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
             </table>
             <br>

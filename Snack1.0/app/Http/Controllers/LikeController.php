@@ -16,13 +16,13 @@ class LikeController extends Controller
 
 
 
-//add or delete 'like'
-    //イイネ同期処理
-    public function like_add_delete (Request $request){
-        //Middlewareを後処理にしないと、イイネ処理後にsuggestitemsを取得できないか？
-        //like処理ミドルウェアで行った後にここに来る。
-        return back()->withInput();
-    }
+// //add or delete 'like'
+//     //イイネ同期処理　は使わない
+//     public function like_add_delete (Request $request){
+//         //Middlewareを後処理にしないと、イイネ処理後にsuggestitemsを取得できないか？
+//         //like処理ミドルウェアで行った後にここに来る。
+//         return back()->withInput();
+//     }
 
 
 

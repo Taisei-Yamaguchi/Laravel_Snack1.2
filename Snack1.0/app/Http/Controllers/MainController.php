@@ -115,7 +115,7 @@ class MainController extends Controller
         $love_girl=$request->love_girl;
         $neko=$request->neko;
 
-        if(($name=="山口泰生")&&($neko="わらび"))
+        if(($name=="山口泰生")&&($neko=="わらび"))
         {
             $ses_id=$request->session()->get('id');
 
@@ -165,6 +165,7 @@ class MainController extends Controller
         $request->session()->put('snack_type',$snack_type);
         $request->session()->put('country',$country);
         $request->session()->put('order',$order);
+        //sessionに追加することで、ページ移動しても検索の情報を残す。
         //AND OR検索　を考える???
         //2023.3.9 検索機能は共通関数に
         $items=SnackSearch::administrator_snack_search($keyword,$snack_type,$country,$order);
@@ -207,10 +208,10 @@ public function administrator_snack_recomender(Request $request)
     }
     $recomend=$request->session()->get('recomend');
 
+    //2023.6.21 $recomendの中身はmember_idのみとシンプルにする。
+    //SNackSearchでは、'member_id'で、Memberの情報を取得するなら、'id'を指定する。
     $items=SnackSearch::administrator_recomend_search($recomend);
-
-    $recomender=explode(',',$recomend);
-    $recomender_info=Member::where('id',$recomender[1])->first();
+    $recomender_info=Member::where('id',$recomend)->first();
     return view('main.administrator_1',[
         'member_id'=>$ses_id,
         'items'=>$items,
@@ -222,7 +223,7 @@ public function administrator_snack_recomender(Request $request)
 
 
 
-//2023.6.10 非同期によるsnack limit 処理。500エラーが起きる。
+//2023.6.10 非同期によるsnack limit 処理。
     public function snack_limit_process(Request $request)
     {
         $snack_id = $request->snack_id; //2.snack_idの取得

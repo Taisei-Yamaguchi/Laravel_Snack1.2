@@ -9,6 +9,7 @@ class SnackSearch extends Facade
 //snack_search
     public static function snack_search ($keyword,$snack_type,$country,$order)
     {
+        //引数の$orderは、"name,asc"のように指定する。
         //whereを追加することで、条件をさらに絞った検索ができる 
         //2023.3.2 デフォルトはいいね順で表示する
         //2023.3.8 order指定すると、順番をどのようにするかをorder->valueから、配列で取り出して指定する。
@@ -34,8 +35,8 @@ class SnackSearch extends Facade
 //recomender snack_search
     public static function recomend_search($recomend)
     {
-        $recomend_array=explode(',',$recomend);
-        $items=Snack::where($recomend_array[0],$recomend_array[1])
+        //2023.6.21 recomendの形式変更
+        $items=Snack::where('member_id',$recomend)
         ->where('deletion',0)
         ->simplePaginate(5);
         return $items;
@@ -45,6 +46,7 @@ class SnackSearch extends Facade
 //administrator snack_search
     public static function administrator_snack_search($keyword,$snack_type,$country,$order)
     {
+        //引数の$orderは、"name,asc"のように指定する。
         //whereを追加することで、条件をさらに絞った検索ができる 
         //2023.3.2 デフォルトはいいね順で表示する
         //2023.3.8 order指定すると、順番をどのようにするかをorder->valueから、配列で取り出して指定する。
@@ -68,8 +70,8 @@ class SnackSearch extends Facade
 //administrator_recomender snack_search
     public static function administrator_recomend_search($recomend)
     {
-        $recomend_array=explode(',',$recomend);
-        $items=Snack::where($recomend_array[0],$recomend_array[1])->simplePaginate(5);
+        //2023.6.21 $recomendの形式をmember_idのみのシンプルな形に
+        $items=Snack::where('member_id',$recomend)->simplePaginate(5);
         return $items;
     }
 }

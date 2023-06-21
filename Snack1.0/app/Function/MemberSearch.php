@@ -8,7 +8,7 @@ class MemberSearch extends Facade
 {
 //member_search for administrator
     public static function member_search ($keyword,$order)
-    {
+    {   //引数の$orderは、"name,asc"のように指定する。
         //whereを追加することで、条件をさらに絞った検索ができる 
         //2023.3.8 order指定すると、順番をどのようにするかをorder->valueから、配列で取り出して指定する。
         //したがって、記述は一つ。

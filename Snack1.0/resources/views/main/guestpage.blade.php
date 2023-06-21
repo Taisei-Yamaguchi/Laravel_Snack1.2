@@ -31,7 +31,7 @@
             </th></tr>
             <tr><td><a href="{{$item->url}}" target="_blank" style="text-decoration:none;">{{$item->name}}</a></td></tr>
             <tr><td>{{$item->company}}</td></tr>
-            <tr><td><a href='recomender_search?recomend=member_id,{{$item->member_id}}' style="text-decoration:none;">{{$item->member->name}}</a></td>
+            <tr><td><a href='recomender_search?recomend={{$item->member_id}}' style="text-decoration:none;">{{$item->member->name}}</a></td>
             <tr><td><img src="../storage/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
             </table>
             @endforeach
@@ -121,7 +121,7 @@
             
             <tr><th>Company:</th><td>{{$item->company}}</td></tr>
             <tr><th>Comment:</th><td>{{$item->coment}}</td></tr>
-            <tr><th>Recommender:</th><td><a href='recomender_search?recomend=member_id,{{$item->member_id}}' style="text-decoration:none;">{{$item->member->name}}</a></td>
+            <tr><th>Recommender:</th><td><a href='recomender_search?recomend={{$item->member_id}}' style="text-decoration:none;">{{$item->member->name}}</a></td>
             <tr><th>Image</th><td><img src="../storage/snack_images/{{$item->image}}" width="70" height="85" alt=""></td></tr>
             </table>
             <br>

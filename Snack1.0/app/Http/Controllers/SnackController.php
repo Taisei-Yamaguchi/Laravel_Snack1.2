@@ -187,15 +187,14 @@ class SnackController extends Controller
 
 
        //2023.5.5 $recomend=$request->recomend;
-        
+        //2023.6.21 $recomend の形式変更。
         $items=SnackSearch::recomend_search($recomend);
         //ここで、セッションmemberがそのsnackをすでにlike しているかチェック。
         //共通関数
         // $like_check=LikeFunction::like_check($ses['id'],$items);
 
         //recomenderの情報
-        $recomender=explode(',',$recomend);
-        $recomender_info=Member::where('id',$recomender[1])->first();
+        $recomender_info=Member::where('id',$recomend)->first();
 
          return view('main.mypage',[
          'member'=>$ses,
@@ -321,6 +320,9 @@ class SnackController extends Controller
 
 
 
+
+
+//2023.6.21 以下はguest用のsnack_search
        //search snacks
        public function guest_search(Request $request){
         //2023.3.10 ペジネーションすると、これらのクエリが引き継がれない問題
@@ -384,17 +386,10 @@ class SnackController extends Controller
         }
         $recomend=$request->session()->get('recomend');
 
-
-    //2023.5.5 $recomend=$request->recomend;
-        
+        //$recomendはmember_idのみを指定。
         $items=SnackSearch::recomend_search($recomend);
-        //ここで、セッションmemberがそのsnackをすでにlike しているかチェック。
-        //共通関数
-        // $like_check=LikeFunction::like_check($ses['id'],$items);
-
         //recomenderの情報
-        $recomender=explode(',',$recomend);
-        $recomender_info=Member::where('id',$recomender[1])->first();
+        $recomender_info=Member::where('id',$recomend)->first();
 
         return view('main.guestpage',[
         'items'=>$items,
