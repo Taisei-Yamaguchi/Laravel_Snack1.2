@@ -11,17 +11,17 @@ class LikeFunction extends Facade
 //イイネ処理を非同期通信で行うので、この共通関数は使わない。
 //Check if the memer already 'like' the snacks or not.
 //各itemsについて、likeしてるかをlike_checkする
-    public static function like_check ($member_id,$items)
-    {
-        $like_check=array();
-        foreach ($items as $item)
-        {
-            $like_check[$item->id]=Like::where('member_id',$member_id)
-            ->where('snack_id',$item->id)
-            ->first();
-        }
-        return $like_check;
-    }
+    // public static function like_check ($member_id,$items)
+    // {
+    //     $like_check=array();
+    //     foreach ($items as $item)
+    //     {
+    //         $like_check[$item->id]=Like::where('member_id',$member_id)
+    //         ->where('snack_id',$item->id)
+    //         ->first();
+    //     }
+    //     return $like_check;
+    // }
 
 
 //add or delete 'like'

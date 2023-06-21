@@ -125,12 +125,12 @@ class SnackController extends Controller
         //2023.3.9 検索機能は共通関数に
         $items=SnackSearch::snack_search($ses['keyword'],$ses['snack_type'],$ses['country'],$ses['order']);
         //2023.3.1 セッションmemberがそれぞれのsnackをすでにlike しているかチェック。
-        $like_check=LikeFunction::like_check($ses['id'],$items);
+        //不要$like_check=LikeFunction::like_check($ses['id'],$items);
 
         return view('main.mypage',[
             'member'=>$ses,
             'items'=>$items,
-            'like_check'=>$like_check,
+            // 'like_check'=>$like_check,
             'suggest_items'=>$suggest_items,
         ]);
         
@@ -156,12 +156,12 @@ class SnackController extends Controller
         ->simplePaginate(5); //2023.5.5 ここsimplePaginate
         //ここで、セッションmemberがそのsnackをすでにlike しているかチェック。
         //2023.3.8　共通関数を使ってみる。
-        $like_check=LikeFunction::like_check($ses['id'],$items);
+        //不要　$like_check=LikeFunction::like_check($ses['id'],$items);
     
         return view('main.mypage',[
         'member'=>$ses,
         'items'=>$items,
-        'like_check'=>$like_check,
+        // 'like_check'=>$like_check,
         'suggest_items'=>$suggest_items,
         ]);
     }
