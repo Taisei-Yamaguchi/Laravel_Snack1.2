@@ -31,6 +31,12 @@ class Member extends Model
         'pass'=>'required|min:5|max:20',
     );
 
+    public static $rules_integrate=array(
+        'mail'=>'required|max:255',
+        'pass'=>'required|min:5|max:20',
+    );
+
+
 
     public function getData(){
         return $this->id.':'.$this->name;

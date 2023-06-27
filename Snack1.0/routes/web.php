@@ -10,6 +10,7 @@ use App\Http\Middleware\AdministratorCheck;
 use App\Http\Middleware\SnackSuggest;
 use App\Http\Middleware\LikeProcess;
 use App\Http\Middleware\SnackEditCheck;
+use App\Http\Controllers\MemberIntegrateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -109,3 +110,8 @@ Route::get('guest/home',[MainController::class,'guest_index'])->middleware(Snack
 Route::get('guest/search',[SnackController::class,'get_guest_search'])->middleware(SnackSuggest::class);
 Route::post('guest/search',[SnackController::class,'guest_search'])->middleware(SnackSuggest::class);
 Route::get('guest/recomender_search',[SnackController::class,'guest_recomend_search'])->middleware(SnackSuggest::class);
+
+
+//member統合情報
+Route::get('member/integrate',[MemberIntegrateController::class,'memberIntegrate_index']);
+Route::post('member/integrate',[MemberIntegrateController::class,'getMemberFromChat']);
