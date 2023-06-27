@@ -38,8 +38,8 @@ class MemberIntegrateController extends Controller
         }
 
         //本番環境で変更。
-        $publicId = 'g6aeLJRqTpjnfy23x2AZpGPDYOR0tC6c';
-        $secretKey = 'yIm1P0PTGUq1NHuevNbBk3xjotHl81xJBJIa7u7X65ssKPBrtxD1HuWxDitIwSMV';
+        $publicId = '';
+        $secretKey = '';
         $url='http://localhost/member_integrate_API/member_integrate_API/public/api/get_member2';
 
 
